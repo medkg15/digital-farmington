@@ -173,3 +173,4 @@ node_modules
 js-built
 .idea
 src/password.php
+src/Password.php
