@@ -172,4 +172,4 @@ logfiles
 node_modules
 js-built
 .idea
-src/services/includes/password.php
+src/password.php
