@@ -140,6 +140,15 @@
                 };
                 var map = new google.maps.Map(document.getElementById('map'),
                     mapOptions);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/pois.php',
+                    data: '{"year":"1730","categories":["Population Demographics", "Natural Features"]}',
+                    success: function(data) { alert('data: ' + data); },
+                    contentType: "application/json",
+                    dataType: 'json'
+                });
         });
     });
 </script>

@@ -1,0 +1,15 @@
+{
+    "name": "Kevin/digital-farmington",
+    "require": {
+        "sergeytsalkov/meekrodb": "~2.3",
+        "respect/validation": "~0.6",
+        "phpoffice/phpexcel": "~1.8"
+    },
+    "authors": [
+        {
+            "name": "Kevin Gregory",
+            "email": "medkg15@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}

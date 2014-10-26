@@ -4,7 +4,7 @@ create table point_of_interest
   latitude decimal(10,8) not null,
   longitude decimal(11,8) not null,
   name varchar(500) not null,
-  description text null,
+  description varchar(20000) null,
   display bit not null
 );
 
@@ -25,8 +25,7 @@ create table category
 
 create table era(
   id int primary key auto_increment,
-  label varchar(250) not null,
-  position int not null
+  label varchar(250) not null
 );
 
 create table point_of_interest_category
