@@ -2,8 +2,7 @@
     "name": "Kevin/digital-farmington",
     "require": {
         "sergeytsalkov/meekrodb": "~2.3",
-        "respect/validation": "~0.6",
-        "phpoffice/phpexcel": "~1.8"
+        "respect/validation": "~0.6"
     },
     "authors": [
         {
@@ -11,5 +10,8 @@
             "email": "medkg15@gmail.com"
         }
     ],
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "config": {
+        "vendor-dir": "src/vendor"
+    }
 }

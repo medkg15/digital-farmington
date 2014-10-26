@@ -145,7 +145,7 @@
                     type: 'POST',
                     url: '/api/pois.php',
                     data: '{"year":"1730","categories":["Population Demographics", "Natural Features"]}',
-                    success: function(data) { alert('data: ' + data); },
+                    success: function(data) {  },
                     contentType: "application/json",
                     dataType: 'json'
                 });
