@@ -5,6 +5,11 @@ require_once('../includes/config.php');
 $json = file_get_contents('php://input');
 $input = json_decode($json);
 
+if(empty($input->categories))
+{
+    exit;
+}
+
 DB::startTransaction();
 
 DB::query('
@@ -36,34 +41,41 @@ as
 
 $pois = DB::query('select * from filter_point_of_interest');
 
-$poi_ids = array_map(function($poi){ return $poi['id']; }, $pois);
+if(!empty($pois)) {
 
-$categories = DB::query('
-select category.id, category.label, point_of_interest_category.point_of_interest_id
-from category
-  inner join point_of_interest_category
-    on point_of_interest_category.category_id = category.id
-where point_of_interest_category.point_of_interest_id in %ls;', $poi_ids);
+    $poi_ids = array_map(function ($poi) {
+            return $poi['id'];
+        }, $pois);
 
-$photos = DB::query('
-select id, filename, point_of_interest_id
-from photo
-where point_of_interest_id in %ls;', $poi_ids);
+        $categories = DB::query('
+    SELECT category.id, category.label, point_of_interest_category.point_of_interest_id
+    FROM category
+      INNER JOIN point_of_interest_category
+        ON point_of_interest_category.category_id = category.id
+    WHERE point_of_interest_category.point_of_interest_id IN %ls;', $poi_ids);
+
+        $photos = DB::query('
+    SELECT id, filename, point_of_interest_id
+    FROM photo
+    WHERE point_of_interest_id IN %ls;', $poi_ids);
+}
 
 DB::query('drop table filter_point_of_interest;');
 
 DB::commit();
 
-$pois = array_map(function($poi)use($photos, $categories) {
-    $poi['photos'] = array_filter($photos, function($photo) use ($poi) {
-        return $poi['id'] === $photo['point_of_interest_id'];
-    });
+if(!empty($pois)) {
+    $pois = array_map(function ($poi) use ($photos, $categories) {
+        $poi['photos'] = array_filter($photos, function ($photo) use ($poi) {
+            return $poi['id'] === $photo['point_of_interest_id'];
+        });
 
-    $poi['categories'] = array_filter($categories, function($category) use ($poi) {
-        return $poi['id'] === $category['point_of_interest_id'];
-    });
-    return $poi;
-}, $pois);
+        $poi['categories'] = array_filter($categories, function ($category) use ($poi) {
+            return $poi['id'] === $category['point_of_interest_id'];
+        });
+        return $poi;
+    }, $pois);
+}
 
 echo json_encode($pois);
 header('Content-Type: application/json');

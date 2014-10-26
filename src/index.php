@@ -40,8 +40,10 @@ $categories = $data_access->get_categories();
 
                 <h2>Select a Year</h2>
 
-                <?php foreach($eras as $era): ?>
-                    <button class="btn btn-default"><?php echo $era['label'];?></button>
+                <?php foreach($eras as $index => $era): ?>
+                    <button class="btn btn-default year <?php if($index === 0): echo 'active'; endif;?>" data-year="<?php echo $era['label'];?>">
+                        <?php echo $era['label'];?>
+                    </button>
                 <?php endforeach; ?>
 
             </div>
@@ -53,7 +55,7 @@ $categories = $data_access->get_categories();
             <?php foreach($categories as $category): ?>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox"/> <?php echo $category['label'];?>
+                    <input type="checkbox" name="categories" value="<?php echo $category['label'];?>" checked/> <?php echo $category['label'];?>
                 </label>
             </div>
             <?php endforeach; ?>
@@ -100,8 +102,8 @@ $categories = $data_access->get_categories();
 
 </div>
 <!-- /.container -->
-<script src="/vendor/requirejs/require.js"></script>
-<script>
+<script type="text/javascript" src="/vendor/requirejs/require.js"></script>
+<script type="text/javascript">
     requirejs.config({
         baseUrl: "<?php echo (strpos($_SERVER["HTTP_HOST"], 'amazonaws.com') !== false) ? '/js-built' : '/js'; ?>",
     });
@@ -111,20 +113,78 @@ $categories = $data_access->get_categories();
             function(bootstrap, $, googleMaps){
 
                 var mapOptions = {
-                    center: { lat: -34.397, lng: 150.644},
-                    zoom: 8
+                    center: { lat: 41.7321983, lng: -72.8352574},
+                    zoom: 12
                 };
                 var map = new google.maps.Map(document.getElementById('map'),
                     mapOptions);
 
-                $.ajax({
-                    type: 'POST',
-                    url: '/api/pois.php',
-                    data: '{"year":"1730","categories":["Population Demographics", "Natural Features"]}',
-                    success: function(data) {  },
-                    contentType: "application/json",
-                    dataType: 'json'
+                var selectedYear = <?php echo $eras[0]['label']; ?>;
+                var markers = [];
+
+                var updatePOIs = function(){
+                    for(var i in markers)
+                    {
+                        markers[i].setMap(null);
+                    }
+                    markers = [];
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/api/pois.php',
+                        data: JSON.stringify({
+                            year: selectedYear,
+                            categories: $('input[name=categories]:checked').map(function(){
+                                return $(this).val();
+                            }).get()
+                        }),
+                        contentType: "application/json",
+                        dataType: 'json'
+                    }).done(function(data){
+
+                        for(var index in data) {
+
+                            (function(){
+                                var poi = data[index];
+                                var marker = new google.maps.Marker({
+                                    position: new google.maps.LatLng(poi.latitude, poi.longitude),
+                                    map: map
+                                });
+
+                                var titleInfoWindow = new google.maps.InfoWindow({
+                                    content: '<p>'+poi.name+'</p>'
+                                });
+
+                                var summaryInfoWindow = new google.maps.InfoWindow({
+                                    content: "<h1>" + poi.name + "</h1>" + poi.description
+                                });
+
+                                google.maps.event.addListener(marker, 'mouseover', function() {
+                                    titleInfoWindow.open(map, this);
+                                });
+
+                                google.maps.event.addListener(marker, 'mouseout', function() {
+                                    titleInfoWindow.close();
+                                });
+
+                                google.maps.event.addListener(marker, 'click', function() {
+                                    summaryInfoWindow.open(map, this);
+                                });
+                                markers.push(marker);
+                            })();
+                        }
+                    });
+                };
+
+                updatePOIs();
+
+                $(document).on('click', 'button.year', function(){
+                    $(this).addClass('active');
+                    $(this).siblings('.active').removeClass('active');
+                    selectedYear = $(this).data('year');
+                    updatePOIs();
                 });
+                $(document).on('change', 'input[name=categories]', updatePOIs);
         });
     });
 </script>
