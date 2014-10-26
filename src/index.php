@@ -1,3 +1,11 @@
+<?php
+require_once(dirname(__FILE__) . '/includes/data_access.php');
+$data_access = new DataAccess();
+$eras = $data_access->get_eras();
+$categories = $data_access->get_categories();
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,17 +40,9 @@
 
                 <h2>Select a Year</h2>
 
-                <button class="btn btn-default">1640</button>
-                <button class="btn btn-default">1700</button>
-                <button class="btn btn-default">1730</button>
-                <button class="btn btn-default">1780</button>
-                <button class="btn btn-default">1800</button>
-                <button class="btn btn-default">1850</button>
-                <button class="btn btn-default">1880</button>
-                <button class="btn btn-default">1910</button>
-                <button class="btn btn-default">1950</button>
-                <button class="btn btn-default">1980</button>
-                <button class="btn btn-default">2020</button>
+                <?php foreach($eras as $era): ?>
+                    <button class="btn btn-default"><?php echo $era['label'];?></button>
+                <?php endforeach; ?>
 
             </div>
 
@@ -50,37 +50,13 @@
         <div class="col-md-3">
 
             <h3>Filter Categories</h3>
-
+            <?php foreach($categories as $category): ?>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox"/> Stuff
+                    <input type="checkbox"/> <?php echo $category['label'];?>
                 </label>
             </div>
-
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox"/> Stuff
-                </label>
-            </div>
-
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox"/> Stuff
-                </label>
-            </div>
-
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox"/> Stuff
-                </label>
-            </div>
-
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox"/> Stuff
-                </label>
-            </div>
-
+            <?php endforeach; ?>
 
         </div>
     </div>

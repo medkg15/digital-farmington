@@ -15,8 +15,8 @@
 
 <?php
 
-require_once('../includes/config.php');
-require_once('../includes/csv_parser.php');
+require_once(dirname(__FILE__) . '/../includes/config.php');
+require_once(dirname(__FILE__) . '/../includes/csv_parser.php');
 
 if(array_key_exists('data', $_FILES))
 {
