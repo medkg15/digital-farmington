@@ -119,7 +119,7 @@ $categories = $data_access->get_categories();
                 var map = new google.maps.Map(document.getElementById('map'),
                     mapOptions);
 					
-//start Alex section					
+//start Alex's border section					
 var latExtent = 86;
 var lngExtent = 180;
 var lngExtent2 = lngExtent - 1e-10;
@@ -135,10 +135,10 @@ var everythingElse = [
 ];
 
 var farmingtonCoords = [
-    new google.maps.LatLng(41.696191, -72.892249),
-    new google.maps.LatLng(41.775995, -72.908385),
-    new google.maps.LatLng(41.758679, -72.797020),
-    new google.maps.LatLng(41.715758, -72.761873)
+   new google.maps.LatLng(41.775995, -72.908385),
+   new google.maps.LatLng(41.696191, -72.892249),
+   new google.maps.LatLng(41.715758, -72.761873),	
+   new google.maps.LatLng(41.758679, -72.797020),
   ];
 
   farmingtonHighlight = new google.maps.Polygon({
