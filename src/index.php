@@ -116,7 +116,8 @@ $categories = $data_access->get_categories();
 
                 var mapOptions = {
                     center: {lat: 41.7321983, lng: -72.8352574},
-                    zoom: 10
+                    zoom: 10,
+					minzoom: 11
                 };
                 var map = new google.maps.Map(document.getElementById('map'),
                     mapOptions);
