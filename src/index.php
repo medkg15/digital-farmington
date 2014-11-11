@@ -121,7 +121,23 @@ $categories = $data_access->get_categories();
                 };
                 var map = new google.maps.Map(document.getElementById('map'),
                     mapOptions);
-
+					
+				 // Setting allowed bounds. Roughly the state of CT.
+				var allowedBounds = new google.maps.LatLngBounds(
+					new google.maps.LatLng(41.066501, -73.628673), 
+					new google.maps.LatLng(41.984272, -71.877879)
+				);
+				var lastValidCenter = map.getCenter();
+				google.maps.event.addListener(map, 'center_changed', function() {
+					if (allowedBounds.contains(map.getCenter())) {
+						// still within valid bounds, so save the last valid position
+						lastValidCenter = map.getCenter();
+						return; 
+					}
+					// not valid anymore => return to last valid position
+					map.panTo(lastValidCenter);
+				});
+				
                 var selectedYear = <?php echo $eras[0]['label']; ?>;
                 var markers = [];
 
