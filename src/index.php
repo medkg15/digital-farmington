@@ -105,6 +105,7 @@ $categories = $data_access->get_categories();
 </div>
 <!-- /.container -->
 <script type="text/javascript" src="/vendor/requirejs/require.js"></script>
+<script src="/js/maplabel.js"></script>
 <script type="text/javascript">
     requirejs.config({
         baseUrl: "<?php echo (strpos($_SERVER["HTTP_HOST"], 'amazonaws.com') !== false) ? '/js-built' : '/js'; ?>"
@@ -254,6 +255,12 @@ $categories = $data_access->get_categories();
 
                 updatePOIs();
                 drawBoundaries();
+				if (year == 1610){
+					var allowedBounds = new google.maps.LatLngBounds(
+						new google.maps.LatLng(33.163948, -85.238598), 
+						new google.maps.LatLng(44.998990, -66.00201)
+					);
+				}
 
                 $(document).on('click', 'button.year', function () {
                     $(this).addClass('active');
