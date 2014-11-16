@@ -263,6 +263,15 @@ $categories = $data_access->get_categories();
 						new google.maps.LatLng(33.163948, -85.238598), 
 						new google.maps.LatLng(44.998990, -66.00201)
 					);
+					var text = new MapLabel({
+						text: 'Welcome to Digital Farmington',
+						position: new google.maps.LatLng(41.870669, -72.824893),
+						map: map,
+						minZoom: 10,
+						fontSize: 21,
+						fontColor: '#ff0000',
+						align: 'center'
+					}); 
 				}
 
                 $(document).on('click', 'button.year', function () {
