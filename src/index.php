@@ -255,7 +255,7 @@ $categories = $data_access->get_categories();
 
                 updatePOIs();
                 drawBoundaries();
-				if (year == 1610){
+				if (selectedYear == 1610){
 					var allowedBounds = new google.maps.LatLngBounds(
 						new google.maps.LatLng(33.163948, -85.238598), 
 						new google.maps.LatLng(44.998990, -66.00201)
