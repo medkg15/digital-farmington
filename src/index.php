@@ -105,6 +105,7 @@ $categories = $data_access->get_categories();
 </div>
 <!-- /.container -->
 <script type="text/javascript" src="/vendor/requirejs/require.js"></script>
+<script type ="text/javascript" src="/js/maplabel.js">
 <script type="text/javascript">
     requirejs.config({
         baseUrl: "<?php echo (strpos($_SERVER["HTTP_HOST"], 'amazonaws.com') !== false) ? '/js-built' : '/js'; ?>"
