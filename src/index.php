@@ -139,17 +139,6 @@ $categories = $data_access->get_categories();
 					map.panTo(lastValidCenter);
 				});
 				
-				
-				var text = new MapLabel({
-				text: 'Welcome to Digital Farmington',
-				position: new google.maps.LatLng(41.870669, -72.824893),
-				map: map,
-				minZoom: 10,
-				fontSize: 21,
-				fontColor: '#ff0000',
-				align: 'center'
-				}); 
-				
                 var selectedYear = <?php echo $eras[0]['label']; ?>;
                 var markers = [];
 
@@ -263,7 +252,17 @@ $categories = $data_access->get_categories();
                         map: map
                     });
                 };
-
+/**
+				var text = new MapLabel({
+				text: 'Welcome to Digital Farmington',
+				position: new google.maps.LatLng(41.870669, -72.824893),
+				map: map,
+				minZoom: 10,
+				fontSize: 21,
+				fontColor: '#ff0000',
+				align: 'center'
+				}); 
+**/
 				
                 updatePOIs();
                 drawBoundaries();
