@@ -105,7 +105,7 @@ $categories = $data_access->get_categories();
 </div>
 <!-- /.container -->
 <script type="text/javascript" src="/vendor/requirejs/require.js"></script>
-<script type="text/javascript" src="/js/maplabel.js"></script>
+<script type ="text/javascript" src="/js/maplabel.js"></script>
 <script type="text/javascript">
     requirejs.config({
         baseUrl: "<?php echo (strpos($_SERVER["HTTP_HOST"], 'amazonaws.com') !== false) ? '/js-built' : '/js'; ?>"
@@ -252,7 +252,7 @@ $categories = $data_access->get_categories();
                         map: map
                     });
                 };
-
+/**
 				var text = new MapLabel({
 				text: 'Welcome to Digital Farmington',
 				position: new google.maps.LatLng(41.870669, -72.824893),
@@ -262,7 +262,7 @@ $categories = $data_access->get_categories();
 				fontColor: '#ff0000',
 				align: 'center'
 				}); 
-
+**/
 				
                 updatePOIs();
                 drawBoundaries();
