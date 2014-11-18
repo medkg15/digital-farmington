@@ -105,7 +105,6 @@ $categories = $data_access->get_categories();
 </div>
 <!-- /.container -->
 <script type="text/javascript" src="/vendor/requirejs/require.js"></script>
-<script type ="text/javascript" src="/js/maplabel.js"></script>
 <script type="text/javascript">
     requirejs.config({
         baseUrl: "<?php echo (strpos($_SERVER["HTTP_HOST"], 'amazonaws.com') !== false) ? '/js-built' : '/js'; ?>"
@@ -113,7 +112,7 @@ $categories = $data_access->get_categories();
     require(['common'], function (common) {
         require(
             ['bootstrap', 'jquery', 'underscore', 'async!http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyD0K-y2C9IH2lUf6_kOt8Dvd9TOlZq7sqk', '1640', '1800', '1840', '1880', 'maplabel'],
-            function (bootstrap, $, _, googleMaps, boundaries1640, boundaries1800, boundaries1840, boundaries1880) {
+            function (bootstrap, $, _, googleMaps, boundaries1640, boundaries1800, boundaries1840, boundaries1880, MapLabel) {
 
                 var mapOptions = {
                     center: {lat: 41.7321983, lng: -72.8352574},
@@ -254,13 +253,13 @@ $categories = $data_access->get_categories();
                 };
 
 				var text = new MapLabel({
-				text: 'Welcome to Digital Farmington',
-				position: new google.maps.LatLng(41.870669, -72.824893),
-				map: map,
-				minZoom: 10,
-				fontSize: 21,
-				fontColor: '#ff0000',
-				align: 'center'
+                    text: 'Welcome to Digital Farmington',
+                    position: new google.maps.LatLng(41.870669, -72.824893),
+                    map: map,
+                    minZoom: 10,
+                    fontSize: 21,
+                    fontColor: '#ff0000',
+                    align: 'center'
 				}); 
 
 				
