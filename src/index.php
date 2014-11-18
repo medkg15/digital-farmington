@@ -143,6 +143,10 @@ $categories = $data_access->get_categories();
 
                 var boundaries = null;
 
+                var titleInfoWindow = new google.maps.InfoWindow({ });
+                var summaryInfoWindow = new google.maps.InfoWindow({ });
+                var currentSummaryMarker = null
+
                 var updatePOIs = function () {
                     for (var i in markers) {
                         markers[i].setMap(null);
@@ -168,18 +172,20 @@ $categories = $data_access->get_categories();
                                 var poi = data[index];
                                 var marker = new google.maps.Marker({
                                     position: new google.maps.LatLng(poi.latitude, poi.longitude),
-                                    map: map
+                                    map: map,
+                                    poi: poi,
+                                    titleInfoWindow: null,
+                                    summaryInfoWindow: null
                                 });
 
-                                var titleInfoWindow = new google.maps.InfoWindow({
-                                    content: '<p>' + poi.name + '</p>'
-                                });
-
-                                var summaryInfoWindow = new google.maps.InfoWindow({
-                                    content: "<h1>" + poi.name + "</h1>" + poi.description
-                                });
 
                                 google.maps.event.addListener(marker, 'mouseover', function () {
+                                    if(marker === currentSummaryMarker)
+                                    {
+                                        return;
+                                    }
+
+                                    titleInfoWindow.setContent('<div class="scrollFix"><h4>' + poi.name + '</h4></div>');
                                     titleInfoWindow.open(map, this);
                                 });
 
@@ -188,7 +194,10 @@ $categories = $data_access->get_categories();
                                 });
 
                                 google.maps.event.addListener(marker, 'click', function () {
+                                    summaryInfoWindow.setContent('<h3>' + poi.name + "</h3>" + poi.description);
                                     summaryInfoWindow.open(map, this);
+                                    currentSummaryMarker = marker;
+                                    titleInfoWindow.close();
                                 });
                                 markers.push(marker);
                             })();
@@ -250,6 +259,8 @@ $categories = $data_access->get_categories();
                         fillOpacity: 0.5,
                         map: map
                     });
+
+                    return boundaries;
                 };
 
 				var text = new MapLabel({
@@ -264,7 +275,17 @@ $categories = $data_access->get_categories();
 
 				
                 updatePOIs();
-                drawBoundaries();
+                var boundaries = drawBoundaries();
+
+                google.maps.event.addListener(boundaries, 'click', function() {
+                    summaryInfoWindow.close();
+                    currentSummaryMarker = null;
+                });
+
+                google.maps.event.addListener(map, 'click', function() {
+                    summaryInfoWindow.close();
+                    currentSummaryMarker = null;
+                });
 
                 $(document).on('click', 'button.year', function () {
                     $(this).addClass('active');

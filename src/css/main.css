@@ -5,6 +5,14 @@
 .full-size-historic-map {
   width: 100%;
 }
+.scrollFix {
+  line-height: 1.35;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.gm-style-iw + div {
+  display: none;
+}
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
