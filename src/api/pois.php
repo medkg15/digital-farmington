@@ -66,13 +66,13 @@ DB::commit();
 
 if(!empty($pois)) {
     $pois = array_map(function ($poi) use ($photos, $categories) {
-        $poi['photos'] = array_filter($photos, function ($photo) use ($poi) {
+        $poi['photos'] = array_values(array_filter($photos, function ($photo) use ($poi) {
             return $poi['id'] === $photo['point_of_interest_id'];
-        });
+        }));
 
-        $poi['categories'] = array_filter($categories, function ($category) use ($poi) {
+        $poi['categories'] = array_values(array_filter($categories, function ($category) use ($poi) {
             return $poi['id'] === $category['point_of_interest_id'];
-        });
+        }));
         return $poi;
     }, $pois);
 }

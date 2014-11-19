@@ -1,3 +1,4 @@
+@import "../../vendor/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css";
 /* custom site styles go here... */
 #map {
   height: 500px;
@@ -12,6 +13,12 @@
 }
 .gm-style-iw + div {
   display: none;
+}
+#learn-more {
+  float: right !important;
+}
+.label {
+  margin: 0 2px;
 }
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 html {
