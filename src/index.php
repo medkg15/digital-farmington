@@ -146,63 +146,67 @@ require(['common'], function (common) {
 
             var titleInfoWindow = new google.maps.InfoWindow({});
             var summaryInfoWindow = new google.maps.InfoWindow({});
-            var currentSummaryMarker = null
+            var currentSummaryMarker = null;
+            var pois = [];
 
             var updatePOIs = function () {
+
+                var selectedCategories = $('input[name=categories]:checked').map(function () {
+                    return $(this).val();
+                }).get();
+
+                var currentPOIs = _.filter(pois, function(poi){
+                    var forSelectedEra = _.some(poi.eras, function(era){
+                        return era.label == selectedYear
+                    });
+
+                    var poiCategories = _.map(poi.categories, function(category){
+                        return category.label;
+                    });
+
+                    var forSelectedCategories = _.intersection(poiCategories, selectedCategories).length > 0;
+                    return forSelectedEra && forSelectedCategories;
+                });
+
                 for (var i in markers) {
                     markers[i].setMap(null);
                 }
                 markers = [];
 
-                $.ajax({
-                    type: 'POST',
-                    url: '/api/pois.php',
-                    data: JSON.stringify({
-                        year: selectedYear,
-                        categories: $('input[name=categories]:checked').map(function () {
-                            return $(this).val();
-                        }).get()
-                    }),
-                    contentType: "application/json",
-                    dataType: 'json'
-                }).done(function (data) {
+                for (var index in currentPOIs) {
 
-                    for (var index in data) {
+                    (function () {
+                        var poi = currentPOIs[index];
+                        var marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(poi.latitude, poi.longitude),
+                            map: map,
+                            poi: poi,
+                            titleInfoWindow: null,
+                            summaryInfoWindow: null
+                        });
 
-                        (function () {
-                            var poi = data[index];
-                            var marker = new google.maps.Marker({
-                                position: new google.maps.LatLng(poi.latitude, poi.longitude),
-                                map: map,
-                                poi: poi,
-                                titleInfoWindow: null,
-                                summaryInfoWindow: null
-                            });
+                        google.maps.event.addListener(marker, 'mouseover', function () {
+                            if (marker === currentSummaryMarker) {
+                                return;
+                            }
 
+                            titleInfoWindow.setContent('<div class="scrollFix"><h4>' + poi.name + '</h4></div>');
+                            titleInfoWindow.open(map, this);
+                        });
 
-                            google.maps.event.addListener(marker, 'mouseover', function () {
-                                if (marker === currentSummaryMarker) {
-                                    return;
-                                }
+                        google.maps.event.addListener(marker, 'mouseout', function () {
+                            titleInfoWindow.close();
+                        });
 
-                                titleInfoWindow.setContent('<div class="scrollFix"><h4>' + poi.name + '</h4></div>');
-                                titleInfoWindow.open(map, this);
-                            });
-
-                            google.maps.event.addListener(marker, 'mouseout', function () {
-                                titleInfoWindow.close();
-                            });
-
-                            google.maps.event.addListener(marker, 'click', function () {
-                                summaryInfoWindow.setContent('<h3>' + poi.name + "</h3>" + poi.description + '<p><a href="#" id="learn-more">Learn More</a></p>');
-                                summaryInfoWindow.open(map, this);
-                                currentSummaryMarker = marker;
-                                titleInfoWindow.close();
-                            });
-                            markers.push(marker);
-                        })();
-                    }
-                });
+                        google.maps.event.addListener(marker, 'click', function () {
+                            summaryInfoWindow.setContent('<h3>' + poi.name + "</h3>" + poi.description + '<p><a href="#" id="learn-more">Learn More</a></p>');
+                            summaryInfoWindow.open(map, this);
+                            currentSummaryMarker = marker;
+                            titleInfoWindow.close();
+                        });
+                        markers.push(marker);
+                    })();
+                }
             };
 
             var getBoundariesForYear = function (year) {
@@ -272,8 +276,6 @@ require(['common'], function (common) {
                 align: 'center'
             });
 
-
-            updatePOIs();
             boundaries = drawBoundaries();
 
             google.maps.event.addListener(boundaries, 'click', function () {
@@ -284,6 +286,16 @@ require(['common'], function (common) {
             google.maps.event.addListener(map, 'click', function () {
                 summaryInfoWindow.close();
                 currentSummaryMarker = null;
+            });
+
+            $.ajax({
+                type: 'GET',
+                url: '/api/pois.php',
+                contentType: "application/json",
+                dataType: 'json'
+            }).done(function (data) {
+                pois = data;
+                updatePOIs();
             });
 
             $(document).on('click', 'button.year', function () {
