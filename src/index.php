@@ -40,12 +40,7 @@ $categories = $data_access->get_categories();
 
                 <h2>Select a Year</h2>
 
-                <?php foreach ($eras as $index => $era): ?>
-                    <button class="btn btn-default year <?php if ($index === 0): echo 'active'; endif; ?>"
-                            data-year="<?php echo $era['label']; ?>">
-                        <?php echo $era['label']; ?>
-                    </button>
-                <?php endforeach; ?>
+                <input name="era" type="text"/>
 
             </div>
 
@@ -112,8 +107,8 @@ requirejs.config({
 });
 require(['common'], function (common) {
     require(
-        ['bootstrap', 'jquery', 'underscore', 'async!http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyD0K-y2C9IH2lUf6_kOt8Dvd9TOlZq7sqk', '1640', '1800', '1840', '1880', 'maplabel'],
-        function (bootstrap, $, _, googleMaps, boundaries1640, boundaries1800, boundaries1840, boundaries1880, MapLabel) {
+        ['bootstrap', 'jquery', 'underscore', 'async!http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyD0K-y2C9IH2lUf6_kOt8Dvd9TOlZq7sqk', '1640', '1800', '1840', '1880', 'maplabel', 'bootstrap-slider'],
+        function (bootstrap, $, _, googleMaps, boundaries1640, boundaries1800, boundaries1840, boundaries1880, MapLabel, bootstrapSlider) {
 
             var mapOptions = {
                 center: {lat: 41.7321983, lng: -72.8352574},
@@ -139,6 +134,11 @@ require(['common'], function (common) {
                 map.panTo(lastValidCenter);
             });
 
+            var allYears = _.map(<?php echo json_encode(array_map(function($era){
+                return $era['label'];
+            },$eras)); ?>, function(year){
+                return parseInt(year, 10);
+            });
             var selectedYear = <?php echo $eras[0]['label']; ?>;
             var markers = [];
 
@@ -298,13 +298,53 @@ require(['common'], function (common) {
                 updatePOIs();
             });
 
-            $(document).on('click', 'button.year', function () {
-                $(this).addClass('active');
-                $(this).siblings('.active').removeClass('active');
-                selectedYear = $(this).data('year');
+            var closestYearWithMap = function(year){
+                var distances = _.map(allYears, function(mapYear){
+                    return { year: mapYear, distance: Math.abs(mapYear - year) };
+                });
+
+                var smallest = distances[0];
+
+                for (var i = 1; i<distances.length; i++)
+                {
+                    if(smallest.distance > distances[i].distance)
+                    {
+                        smallest = distances[i];
+                    }
+                }
+
+                return smallest.year;
+            };
+
+            // pre-compute where we will "jump to" for years that we don't have maps
+            var roundTo = [];
+            var step = 10;
+
+            for (var year = allYears[0]; year <= allYears[allYears.length-1]; year+=step)
+            {
+                roundTo[year] = closestYearWithMap(year);
+            }
+
+            $('input[name=era]').slider({
+                min: allYears[0],
+                max: allYears[allYears.length-1],
+                step: step,
+                value: allYears[0],
+                tooltip: 'always',
+                handle: 'triangle'
+            }).on('slide', function(e){
+
+                var currentYear = parseInt(e.value, 10);
+                $(this).slider('setValue', roundTo[currentYear]);
+
+            }).on('slideStop', function(e){
+
+                selectedYear = parseInt(this.value, 10);
                 updatePOIs();
                 drawBoundaries();
+
             });
+
             $(document).on('change', 'input[name=categories]', updatePOIs);
 
             $(document).on('click', '#learn-more', function (e) {

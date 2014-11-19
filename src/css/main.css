@@ -20,6 +20,9 @@
 .label {
   margin: 0 2px;
 }
+.slider.slider-horizontal {
+  width: 100%;
+}
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
