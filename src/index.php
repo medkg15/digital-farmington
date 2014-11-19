@@ -340,6 +340,8 @@ require(['common'], function (common) {
             }).on('slideStop', function(e){
 
                 selectedYear = parseInt(this.value, 10);
+                $(this).slider('setValue', roundTo[selectedYear]);
+                selectedYear = parseInt(this.value, 10);
                 updatePOIs();
                 drawBoundaries();
 
