@@ -316,9 +316,9 @@ require(['common'], function (common) {
                 modal.find('.modal-title').html(poi.name);
                 modal.find('.title').html(poi.name);
                 modal.find('.description').html(poi.description);
+                var carousel = modal.find('#photo-carousel');
 
-                if (poi.photos.length > 1) {
-                    var carousel = modal.find('#photo-carousel');
+                if (poi.photos.length > 0) {
                     var indicators = carousel.find('.carousel-indicators');
                     var imageContainer = carousel.find('.carousel-inner');
                     imageContainer.children().remove();
@@ -331,7 +331,7 @@ require(['common'], function (common) {
                     carousel.show();
                 }
                 else {
-                    modal.find('.photo-carousel').hide();
+                    carousel.hide();
                 }
 
                 var categories = modal.find('.categories');
