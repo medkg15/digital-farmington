@@ -107,8 +107,8 @@ requirejs.config({
 });
 require(['common'], function (common) {
     require(
-        ['bootstrap', 'jquery', 'underscore', 'async!http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyD0K-y2C9IH2lUf6_kOt8Dvd9TOlZq7sqk', '1640', '1800', '1840', '1880', 'maplabel', 'bootstrap-slider'],
-        function (bootstrap, $, _, googleMaps, boundaries1640, boundaries1800, boundaries1840, boundaries1880, MapLabel, bootstrapSlider) {
+        ['bootstrap', 'jquery', 'underscore', 'async!http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyD0K-y2C9IH2lUf6_kOt8Dvd9TOlZq7sqk', '1640', '1800', '1840', '1880', 'maplabel', 'bootstrap-slider', 'yearJumpLookup'],
+        function (bootstrap, $, _, googleMaps, boundaries1640, boundaries1800, boundaries1840, boundaries1880, MapLabel, bootstrapSlider, yearJumpLookup) {
 
             var mapOptions = {
                 center: {lat: 41.7321983, lng: -72.8352574},
@@ -298,37 +298,12 @@ require(['common'], function (common) {
                 updatePOIs();
             });
 
-            var closestYearWithMap = function(year){
-                var distances = _.map(allYears, function(mapYear){
-                    return { year: mapYear, distance: Math.abs(mapYear - year) };
-                });
-
-                var smallest = distances[0];
-
-                for (var i = 1; i<distances.length; i++)
-                {
-                    if(smallest.distance > distances[i].distance)
-                    {
-                        smallest = distances[i];
-                    }
-                }
-
-                return smallest.year;
-            };
-
-            // pre-compute where we will "jump to" for years that we don't have maps
-            var roundTo = [];
-            var step = 10;
-
-            for (var year = allYears[0]; year <= allYears[allYears.length-1]; year+=step)
-            {
-                roundTo[year] = closestYearWithMap(year);
-            }
+            var roundTo = yearJumpLookup(allYears, 10);
 
             $('input[name=era]').slider({
                 min: allYears[0],
                 max: allYears[allYears.length-1],
-                step: step,
+                step: 10,
                 value: allYears[0],
                 tooltip: 'always',
                 handle: 'triangle'
