@@ -113,7 +113,7 @@ require(['common'], function (common) {
             var mapOptions = {
                 center: {lat: 41.7321983, lng: -72.8352574},
                 zoom: 10,
-                minZoom: 9
+				minZoom: 5
             };
             var map = new google.maps.Map(document.getElementById('map'),
                 mapOptions);
@@ -266,15 +266,329 @@ require(['common'], function (common) {
                 return boundaries;
             };
 
-            var text = new MapLabel({
+			
+			//START INTRO CODE
+			//Displays Welcome to Digital Farmington on the map
+			//We need to create all our labels (text on the map) up front. Otherwise they can't be set as null in the Timeout functions
+			
+			var welcomeText = new MapLabel({
                 text: 'Welcome to Digital Farmington',
                 position: new google.maps.LatLng(41.870669, -72.824893),
                 map: map,
                 minZoom: 10,
+				maxZoom: 10,
                 fontSize: 21,
                 fontColor: '#ff0000',
                 align: 'center'
             });
+			
+			var exploreText = new MapLabel({
+					text: 'Explore Historic Sites',
+					position: new google.maps.LatLng(41.739977, -72.851171),
+					map: map,
+					fontSize: 31,
+					fontColor: '#ff0000',
+					minZoom: 14,
+					maxZoom: 17,
+					align: 'center'
+				});
+			exploreText.setMap(null);
+			
+			var colonialText = new MapLabel({
+					text: 'From Colonial America',
+					position: new google.maps.LatLng(47.934014, -74.733103),
+					map: map,
+					minZoom: 3,
+					maxZoom: 11,
+					fontSize: 29,
+					fontColor: '#ff0000',
+					align: 'center'
+			}); 
+			colonialText.setMap(null);
+			
+			var eighteenText = new MapLabel({
+					text: 'To the 1800s',
+					position: new google.maps.LatLng(42.099942, -72.774755),
+					map: map,
+					minZoom: 3,
+					maxZoom: 15,
+					fontSize: 34,
+					fontColor: '#ff0000',
+					align: 'center'
+			}); 
+			eighteenText.setMap(null);
+			
+			var todayText = new MapLabel({
+				text: 'To Today',
+				position: new google.maps.LatLng(41.7349, -72.791163),
+				map: map,
+				fontSize: 47,
+				minZoom: 15,
+				fontColor: '#ff0000',
+				align: 'center'
+			}); 
+			todayText.setMap(null);
+			
+			var boundaryText = new MapLabel({
+				text: 'See Borders Change',
+				position: new google.maps.LatLng(41.890669, -72.824893),
+				map: map,
+				fontSize: 29,
+				maxZoom: 16,
+				fontColor: '#ff0000',
+				align: 'center'
+			}); 
+			boundaryText.setMap(null);
+			
+			var comeGoText = new MapLabel({
+				text: 'And Sites Come and Go',
+				position: new google.maps.LatLng(41.728, -72.824690),
+				map: map,
+				fontSize: 27,
+				fontColor: '#ff0000',
+				minZoom: 15,
+				maxZoom: 17,
+				align: 'center'
+			}); 
+			comeGoText.setMap(null);
+			
+			var enjoyText = new MapLabel({
+				text: 'Enjoy!',
+				position: new google.maps.LatLng(41.890669, -72.824893),
+				map: map,
+				fontSize: 35,
+				fontColor: '#ff0000',
+				minZoom: 8,
+				maxZoom: 11,
+				align: 'center'
+			}); 
+			enjoyText.setMap(null);
+			
+			//CODE FOR COLONIAL MAP OVERLAY
+			MapOverlay.prototype = new google.maps.OverlayView();
+			
+			// Initialize the map and the custom overlay.
+			var swBound = new google.maps.LatLng(31.530507, -84.936474);
+			var neBound = new google.maps.LatLng(46.573332, -67.872547);
+			var bounds = new google.maps.LatLngBounds(swBound, neBound);
+			var swBound2 = new google.maps.LatLng(40.988926, -73.658322);
+			var neBound2 = new google.maps.LatLng(42.029617, -71.779317);
+			var bounds2 = new google.maps.LatLngBounds(swBound2, neBound2);
+			
+			// The photograph
+			var srcImage = '/images/Colonies_1763.jpg';
+			var srcImage2= '/images/1800sCT.jpg';
+							
+			overlay = new MapOverlay(bounds, srcImage, map);
+			overlay.setMap(null);
+						
+			/** @constructor */
+			function MapOverlay(bounds, image, map) {
+
+				this.bounds_ = bounds;
+				this.image_ = image;
+				this.map_ = map;
+				this.div_ = null;
+				this.setMap(map);
+			}
+
+			/**
+			* onAdd is called when the map's panes are ready and the overlay has been
+			* added to the map.
+			*/
+			MapOverlay.prototype.onAdd = function() {
+				var div = document.createElement('div');
+				div.style.borderStyle = 'none';
+				div.style.borderWidth = '0px';
+				div.style.position = 'absolute';
+				var img = document.createElement('img');
+				img.src = this.image_;
+				img.style.width = '100%';
+				img.style.height = '100%';
+				img.style.position = 'absolute';
+				div.appendChild(img);
+				this.div_ = div;
+				var panes = this.getPanes();
+				panes.overlayLayer.appendChild(div);
+				};
+
+			MapOverlay.prototype.draw = function() {
+				var overlayProjection = this.getProjection();
+				var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
+				var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
+				var div = this.div_;
+				div.style.left = sw.x + 'px';
+				div.style.top = ne.y + 'px';
+				div.style.width = (ne.x - sw.x) + 'px';
+				div.style.height = (sw.y - ne.y) + 'px';
+			};
+
+			MapOverlay.prototype.onRemove = function() {
+				this.div_.parentNode.removeChild(this.div_);
+				this.div_ = null;
+			};		
+			//END CODE FOR HISTORIC MAP OVERLAY	
+		
+			//BEGIN TIMED EVENTS
+			//After 3.5 seconds, zooms to the Farmington River and writes "Explore Historic Sites"			
+			var allEvents = [];
+			var introDone = false;
+			var lastText = welcomeText;
+			
+			allEvents.push(setTimeout(function(){
+				map.panTo(new google.maps.LatLng(41.736645, -72.851353));
+				welcomeText.setMap(null);
+				exploreText.setMap(map);
+				lastText = exploreText;
+				smoothZoom(16);
+			},3000));
+						
+			//Smooth out to the East Coast
+			allEvents.push(setTimeout(function(){
+				exploreText.setMap(null);
+				smoothZoom(5);
+				}
+			,8000));
+						
+			//Show the colonial America map and "From Colonial America"
+			allEvents.push(setTimeout(function(){
+				overlay.setMap(map);
+				colonialText.setMap(map);
+				lastText = colonialText;
+				}
+			,13500));
+			
+			//Remove colonial America map and text. Then zoom to CT.
+			allEvents.push(setTimeout(function(){
+				colonialText.setMap(null);
+				smoothZoom(9);
+				map.panTo(new google.maps.LatLng(41.607955, -72.689579));
+				}
+			,16500));
+			
+			//Show the 1800s CT map overlay and text.
+			allEvents.push(setTimeout(function(){
+				overlay.setMap(null);
+				overlay = new MapOverlay(bounds2, srcImage2, map);
+				eighteenText.setMap(map);
+				lastText = eighteenText;
+			}
+			,18500));
+			
+			//Remove the 1800s overlay, go to the Uconn Medical Center.
+			allEvents.push(setTimeout(function(){
+				map.panTo(new google.maps.LatLng(41.731445, -72.791100));
+				eighteenText.setMap(null);
+				smoothZoom(16);
+			}
+			,21500));
+			
+			//Show the 1800s CT map overlay and text.
+			allEvents.push(setTimeout(function(){
+				overlay.setMap(null);
+				todayText.setMap(map);
+				lastText = todayText;
+			}
+			,23500));
+			
+			//Event to show change borders over time
+			allEvents.push(setTimeout(function(){
+				todayText.setMap(null);
+				map.set('minZoom', 9);
+				smoothZoom(10);
+			}
+			,26500));
+			
+			allEvents.push(setTimeout(function(){
+				boundaryText.setMap(map);
+				lastText = boundaryText;
+				var i = 2500;
+				while(i < 5500){
+					allEvents.push(setTimeout(function(){
+						selectedYear = 1900;
+						drawBoundaries();
+					}
+					,i));
+					i = i + 1000;
+					allEvents.push(setTimeout(function(){
+						selectedYear = 1610;
+						drawBoundaries();
+					}
+					,i));
+					i = i + 1000;
+				}
+			}
+			,28500));
+						
+			//Sites Come and Go 
+			allEvents.push(setTimeout(function(){
+				boundaryText.setMap(null);
+				map.panTo(new google.maps.LatLng(41.721774, -72.824690));
+				comeGoText.setMap(map);
+				lastText = comeGoText;
+				smoothZoom(15);
+			}
+			,34500));
+			
+			allEvents.push(setTimeout(function(){
+				var i = 2500;
+				while(i < 5500){
+					allEvents.push(setTimeout(function(){
+						selectedYear = 9999;
+						updatePOIs();
+					}
+					,i));
+					i = i + 1000;
+					allEvents.push(setTimeout(function(){
+						selectedYear = 1920;
+						updatePOIs();
+					}
+					,i));
+					i = i + 1000;
+				}
+			}
+			,36500));
+			
+			allEvents.push(setTimeout(function(){
+				enjoyText.setMap(map);
+				map.panTo(new google.maps.LatLng(41.7321983, -72.8352574));
+				smoothZoom(10);
+				lastText = enjoyText;
+			}
+			,42000));			
+			
+			allEvents.push(setTimeout(function(){
+				enjoyText.setMap(null);
+				introDone = true;
+			}
+			,46500));	
+			
+			//Called if you use the slider during the intro. Kills all the timed events.
+			killIntro = function(){
+				lastText.setMap(null);
+				for(i = 0; i < allEvents.length; i++){
+					clearTimeout(allEvents[i]);
+				}
+			};
+			
+			//Takes a new desired zoom level. Then zooms into it 1 zoom per .75 seconds to make it smoooooth.
+			var smoothZoom = function(newZoom){
+				currentZoom = map.getZoom();
+								
+				if (newZoom > currentZoom){
+					allEvents.push(setTimeout(function(){
+							map.setZoom(currentZoom+1);
+							smoothZoom(newZoom);
+						},450));
+					}
+				else if (newZoom < currentZoom){
+					allEvents.push(setTimeout(function(){
+							map.setZoom(currentZoom-1);
+							smoothZoom(newZoom);
+					},450));	
+				}
+				else return;
+			}	
 
             boundaries = drawBoundaries();
 
@@ -319,7 +633,15 @@ require(['common'], function (common) {
                 selectedYear = parseInt(this.value, 10);
                 updatePOIs();
                 drawBoundaries();
-
+				//If you move the slider, kill the intro.
+				if(introDone == false){
+					//kill all the timed events
+					killIntro();
+					overlay.setMap(null);
+					map.panTo(new google.maps.LatLng(41.7321983, -72.8352574));
+					map.setZoom(10);
+					map.set('minZoom', 9);
+				}
             });
 
             $(document).on('change', 'input[name=categories]', updatePOIs);
