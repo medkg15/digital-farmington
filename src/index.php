@@ -53,7 +53,7 @@ $categories = $data_access->get_categories();
         </div>
         <div class="col-md-3">
 
-            <h3>Filter Categories</h3>
+            <h3> <img src="images/filterCategories.png" alt="Filter Categories" width="180" height="34"/> </h3>
             <?php foreach ($categories as $category): ?>
                 <div class="checkbox">
                     <label>
