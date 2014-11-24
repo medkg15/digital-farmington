@@ -44,7 +44,7 @@ $categories = $data_access->get_categories();
 
             <div>
 
-                <h2>Select a Year</h2>
+                <h2><img src="images/selectaYear.png" alt="Select a Year" width="180" height="34"/></h2>
 
                 <input name="era" type="text"/>
 
@@ -66,7 +66,7 @@ $categories = $data_access->get_categories();
         </div>
     </div>
 
-    <h2>Historic Maps</h2>
+    <h2><img src="images/HistoricalMaps.png" alt="Historical Maps" width="180" height="34"/></h2>
 
     <div class="row">
         <div class="col-md-2">
