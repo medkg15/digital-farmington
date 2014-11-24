@@ -73,7 +73,7 @@ $categories = $data_access->get_categories();
 		 <p>1800 CT Map  <p/>
 		 <img src="images/linePic2.png" alt="line" width="180" />
             <a class="thumbnail" data-toggle="modal" data-target="#myModal">
-                <img src="images/1800sCT.jpg" alt="Historical Maps" width="350" height="150"/>
+                <img src="images/1800sCT2.jpg" alt="Historical Maps" width="350" height="150"/>
             </a>
         </div>
         <div class="col-md-2">
