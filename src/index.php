@@ -22,7 +22,7 @@ $categories = $data_access->get_categories();
 				<img src="images/DigitalFarmington.png" alt="Digital Farmington" width="400" height="43"/>
 				</a>
 				<a href="http://www.stanleywhitman.org/">
-				<img src="images/StanleyWhitmanHName.png" alt="StanleyWhitman House" width="250" height="30"/>
+				<img src="images/StanleyWhitmanHName.png" alt="StanleyWhitman House" style="position:absolute; left:850px;" width="250" height="30"/>
 				</a>
 								
             </div>
