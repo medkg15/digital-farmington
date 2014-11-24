@@ -18,7 +18,13 @@ $categories = $data_access->get_categories();
         <div class="container-fluid">
 
             <div class="navbar-header">
-                <a class="navbar-brand" href="#" data-bind="click: returnHome">Digital Farmington</a>
+                 <a class="navbar-brand" href="#" data-bind="click: returnHome">
+				<img src="images/DigitalFarmington.png" alt="Digital Farmington" width="400" height="43"/>
+				</a>
+				<a href="http://www.stanleywhitman.org/">
+				<img src="images/StanleyWhitmanHName.png" alt="StanleyWhitman House" width="250" height="30"/>
+				</a>
+								
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
