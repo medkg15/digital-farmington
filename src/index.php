@@ -9,33 +9,43 @@ $categories = $data_access->get_categories();
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="/css/main.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+
 <div class="container">
 
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
+<!-- header -->
 
-            <div class="navbar-header">
-                 <a class="navbar-brand" href="#" data-bind="click: returnHome">
-				<img src="images/DigitalFarmington.png" alt="Digital Farmington" width="400" height="43"/>
-				</a>
-				<a href="http://www.stanleywhitman.org/">
-				<img src="images/StanleyWhitmanHName.png" alt="StanleyWhitman House" style="position:absolute; left:850px; top:15px;" width="250" height="30"/>
-				</a>
-								
-            </div>
+<div id="header">
+<div id="header-left">
+		  <a class="navbar-brand" href="#" data-bind="click: returnHome" title="Explore Farmington on the timeline">
+		  <img src="images/DigitalFarmington.png" alt="Digital Farmington" style="margin-left:0px; margin-top:-5px; position:relative; border:0px;"/>
+		  </a>
+</div>
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<div id="header-right">
+ <a href="http://www.stanleywhitman.org/" title="Stanley Whitman House Web">
+<img src="images/StanleyWhitmanHName.png" alt="StanleyWhitman House" style="margin-right:25px; margin-top:10px; position:relative; border:0px;" width="250" height="30"/>
+</a>
+</div>
+  
+</div>
+<!-- header -->
+<!-- page -->
+<div id="page">	
 
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
-
-    <div class="row">
+ <!-- containerIn -->
+  <div id="containerIn">
+  
+	 <!--/ content1 -->
+	  <div id="content1">
+     <div class="row" >
+	 
+	 
+	 <!-- sidecenter -->
+      <div id="sidecenter">
         <div class="col-md-9">
 
             <div id="map">
@@ -43,17 +53,28 @@ $categories = $data_access->get_categories();
             </div>
 
             <div>
-
-                <h2><img src="images/selectaYear.png" alt="Select a Year" width="180" height="34"/></h2>
+			
+				<img src="images/selectaYear.png" alt="Select a Year" />
+				
 
                 <input name="era" type="text"/>
 
             </div>
 
         </div>
+		
+		
+      </div>
+<!--/ sidecenter -->
+
+<!-- sideright -->
+        <div id="sideright">
+		
         <div class="col-md-3">
 
-            <h3> <img src="images/filterCategories.png" alt="Filter Categories" width="180" height="34"/> </h3>
+            <h3>
+			<img src="images/filterCategories.png" alt="Filter Categories" />
+			</h3>
             <?php foreach ($categories as $category): ?>
                 <div class="checkbox">
                     <label>
@@ -64,60 +85,130 @@ $categories = $data_access->get_categories();
             <?php endforeach; ?>
 
         </div>
-    </div>
+		
+		</div>
+<!--/ sideright -->
 
-    <h2><img src="images/HistoricalMaps.png" alt="Historical Maps" width="180" height="34"/></h2>
-
-    <div class="row">
-        <div class="col-md-2">
-		 <p>1800 CT Map  <p/>
-		 <img src="images/linePic2.png" alt="line" width="180" />
-            <a class="thumbnail" data-toggle="modal" data-target="#myModal">
-                <img src="images/1800sCT2.jpg" alt="Historical Maps" width="350" height="150"/>
-            </a>
-        </div>
-        <div class="col-md-2">
-		<p>Map Name  <p/>
-		 <img src="images/linePic2.png" alt="line" width="180" />
-            <a class="thumbnail" data-toggle="modal" data-target="#myModal">
-                <img src="http://placehold.it/350x150" alt="...">
-            </a>
-        </div>
-        <div class="col-md-2">
-		<p>Map Name  <p/>
-		 <img src="images/linePic2.png" alt="line" width="180" />
-            <a class="thumbnail" data-toggle="modal" data-target="#myModal">
-                <img src="http://placehold.it/350x150" alt="...">
-            </a>
-        </div>
-        <div class="col-md-2">
-		<p>Map Name  <p/>
-		 <img src="images/linePic2.png" alt="line" width="180" />
-            <a class="thumbnail" data-toggle="modal" data-target="#myModal">
-                <img src="http://placehold.it/350x150" alt="...">
-            </a>
-        </div>
-        <div class="col-md-2">
-		<p>Map Name  <p/>
-		 <img src="images/linePic2.png" alt="line" width="180" />
-            <a class="thumbnail" data-toggle="modal" data-target="#myModal">
-                <img src="http://placehold.it/350x150" alt="...">
-            </a>
-        </div>
-        <div class="col-md-2">
-		<p>Map Name  <p/>
-		 <img src="images/linePic2.png" alt="line" width="180" />
-            <a class="thumbnail" data-toggle="modal" data-target="#myModal">
-                <img src="http://placehold.it/350x150" alt="...">
-            </a>
-        </div>
     </div>
+<!--/ content1 -->		
+ </div>
+
+	<!-- clear --><div class="clearer"><span></span></div><!--/ clear -->
+	<p> <p/>
+	
+<!-- main-text-draw1 -->
+				<div id="main-text-draw1">
+				
+	           <img src="images/historicMaps.jpg" alt="Historical Maps" style="margin-left:0px; margin-top:0px; position:relative; border:0px;"/>
+	            
+				<br/><br/>
+				<p style="font-style:italic; font-size:9pt">
+					
+				    <div class="row">
+        <div class="col-md-2">
+		
+		  <p class="titleNameMap">Name Map1 <p/>
+		 <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" /> 
+		 
+		   <a class="thumbnail" data-toggle="modal" data-target="#myModal">
+                <img src="images/1800sCT213x157.jpg" alt="Historical Maps" width="350" height="150"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            
+			  <p class="titleNameMap">Name Map2 <p/>
+		 <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" /> 
+		 
+			<a class="thumbnail" data-toggle="modal" data-target="#myModal">
+                <img src="images/1800sCT213x157.jpg" alt="Historical Maps" width="350" height="150"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+            
+			  <p class="titleNameMap">Name Map3 <p/>
+		 <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" /> 
+		 
+			<a class="thumbnail" data-toggle="modal" data-target="#myModal">
+                <img src="images/1800sCT213x157.jpg" alt="Historical Maps" width="350" height="1"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+		  <p class="titleNameMap">Name Map4 <p/>
+		 <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" /> 
+		 
+            <a class="thumbnail" data-toggle="modal" data-target="#myModal">
+                 <img src="images/1800sCT213x157.jpg" alt="Historical Maps" width="350" height="1"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+              <p class="titleNameMap">Name Map5 <p/>
+		 <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" /> 
+		 
+			<a class="thumbnail" data-toggle="modal" data-target="#myModal">
+                 <img src="images/1800sCT213x157.jpg" alt="Historical Maps" width="350" height="1"/>
+            </a>
+        </div>
+        <div class="col-md-2">
+		  <p class="titleNameMap">Name Map6 <p/>
+		 <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" /> 
+		 
+            <a class="thumbnail" data-toggle="modal" data-target="#myModal">
+                 <img src="images/1800sCT213x157.jpg" alt="Historical Maps" width="350" height="1"/>
+            </a>
+        </div>
+    </div>	
+				</p>
+				</div>
+				<!-- /main-text-draw1 -->
 
     <?php include "historic-map-modal.php"; ?>
     <?php include "poi-detail-modal.php"; ?>
+	
+<!-- menubottom -->
+<div id="menubottom">
+   	    <div id="menubottom-left">
+			<a accesskey="c" href="http://www.stanleywhitman.org" title="About">ABOUT</a> - 
+		    <a href="http://www.stanleywhitman.org" title="Contact">CONTACT</a> 
+	</div>
 
 </div>
-<!-- /.container -->
+<!--/ menubottom -->
+
+	<!-- clear --><div class="clearer"><span></span></div><!--/ clear -->
+<!-- underfooter -->
+    <div id="underfooter">
+        <div id="underfooterleft">
+	     	 Copyright &copy;  2014  STANLEY WHITMAN HOUSE  
+	     </div>
+       
+		 <div id="underfooterright">
+		  Web Design  by Alex Shorthouse/Kevin Gregory/Marianella Rydzewski
+		    </div>
+	
+	     <div id="underfootercenter">
+ 	     
+         </div>
+   
+	  <br>
+	</div>
+    <!--/ underfooter -->
+	
+</div>
+</div>
+<!-- /.containerIn -->
+
+</div>
+<!--/ page -->
+<!-- clear --><div class="clearer"><span></span></div><!--/ clear -->
+<!-- clear --><div class="clearer"><span></span></div><!--/ clear -->
+<br>
+<br>
+<br>
+</div>
+<!--/ container -->
+
+</script><script charset="utf-8" type="text/javascript">var switchTo5x=false;</script><script charset="utf-8" type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:"22ff76a7-01e5-4ac8-98d7-8b175f44c98f"});</script><script charset="utf-8" type="text/javascript" src="http://s.sharethis.com/loader.js"></script><script charset="utf-8" type="text/javascript">var options={ publisher:"22ff76a7-01e5-4ac8-98d7-8b175f44c98f", "position": "left", "chicklets": { "items": ["facebook","twitter","linkedin"] } }; var st_hover_widget = new sharethis.widgets.hoverbuttons(options);</script><style type="text/css">
+
 <script type="text/javascript" src="/vendor/requirejs/require.js"></script>
 <script type="text/javascript">
 requirejs.config({
