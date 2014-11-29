@@ -88,17 +88,17 @@ h5 {
         float: left;
         height: 100%;
         width: 700px;
-		vertical-align:top;
+		vertical-align:left;
 	    padding-left:10px;
 		padding-top:10px;
-		padding-bottom:10px;
+		
 		}
 
 #sideright {
         float: right;
         height: 100%;
         width: 230px;
-		vertical-align:top;
+		
 		margin-right:0px;
         }
 /**********    content   *******************************/
