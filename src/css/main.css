@@ -1,8 +1,9 @@
 @import "../../vendor/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css";
 /* custom site styles go here... */
 #map {
-  height: 450px;
-  width:  700px;
+ padding-top:10px !important;
+  height: 450px !important;
+  width:  700px !important;
 }
 .full-size-historic-map {
   width: 100%;
