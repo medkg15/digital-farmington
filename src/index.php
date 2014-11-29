@@ -207,7 +207,8 @@ $categories = $data_access->get_categories();
 </div>
 <!--/ container -->
 
-</script><script charset="utf-8" type="text/javascript">var switchTo5x=false;</script><script charset="utf-8" type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:"22ff76a7-01e5-4ac8-98d7-8b175f44c98f"});</script><script charset="utf-8" type="text/javascript" src="http://s.sharethis.com/loader.js"></script><script charset="utf-8" type="text/javascript">var options={ publisher:"22ff76a7-01e5-4ac8-98d7-8b175f44c98f", "position": "left", "chicklets": { "items": ["facebook","twitter","linkedin"] } }; var st_hover_widget = new sharethis.widgets.hoverbuttons(options);</script><style type="text/css">
+<script charset="utf-8" type="text/javascript">var switchTo5x=false;</script><script charset="utf-8" type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:"22ff76a7-01e5-4ac8-98d7-8b175f44c98f"});</script><script charset="utf-8" type="text/javascript" src="http://s.sharethis.com/loader.js"></script><script charset="utf-8" type="text/javascript">var options={ publisher:"22ff76a7-01e5-4ac8-98d7-8b175f44c98f", "position": "left", "chicklets": { "items": ["facebook","twitter","linkedin"] } }; var st_hover_widget = new sharethis.widgets.hoverbuttons(options);</script>
+
 
 <script type="text/javascript" src="/vendor/requirejs/require.js"></script>
 <script type="text/javascript">
