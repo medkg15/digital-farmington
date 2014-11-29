@@ -87,8 +87,8 @@ h5 {
 #sidecenter {
         float: left;
         height: 100%;
-        width: 750px;
-		
+        width: 700px;
+		vertical-align:top;
 	    padding-left:10px;
 		padding-top:10px;
 		padding-bottom:10px;
@@ -97,7 +97,7 @@ h5 {
 #sideright {
         float: right;
         height: 100%;
-        width: 220px;
+        width: 230px;
 		vertical-align:top;
 		margin-right:0px;
         }
