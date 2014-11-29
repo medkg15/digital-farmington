@@ -52,7 +52,7 @@ $categories = $data_access->get_categories();
 
             </div>
 
-            <div>
+            <div id="selectyear">
 			
 				<img src="images/selectaYear.png" alt="Select a Year" />
 				
