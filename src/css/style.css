@@ -95,9 +95,10 @@ h5 {
 		}
 
 #sideright {
-        
+        float: right;
         height: 100%;
         width: 230px;
+		
 		margin-right:0px;
         }
 /**********    content   *******************************/
