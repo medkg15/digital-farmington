@@ -46,7 +46,7 @@ $categories = $data_access->get_categories();
 	 
 	 <!-- sidecenter -->
       <div id="sidecenter">
-        <div class="col-md-9">
+       
 
             <div id="map">
 
@@ -61,7 +61,7 @@ $categories = $data_access->get_categories();
 
             </div>
 
-        </div>
+        
 		
 		
       </div>
