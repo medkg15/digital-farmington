@@ -2,7 +2,8 @@
     "name": "Kevin/digital-farmington",
     "require": {
         "sergeytsalkov/meekrodb": "~2.3",
-        "respect/validation": "~0.6"
+        "respect/validation": "~0.6",
+        "laravel/laravel": "v4.2.11"
     },
     "authors": [
         {
