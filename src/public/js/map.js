@@ -3,6 +3,8 @@ define(
     function (bootstrap, $, _, googleMaps, boundaries1640, boundaries1800, boundaries1840, boundaries1880, MapLabel, bootstrapSlider, yearJumpLookup, intro) {
 
         var map;
+        var drawBoundaries;
+        var changeSelectedYear;
 
         return {
             initialize: function(eras, pois){
@@ -35,6 +37,10 @@ define(
                 });
                 var selectedYear = allYears[0];
                 var markers = [];
+
+                changeSelectedYear = function(year){
+                    selectedYear = year;
+                };
 
                 var boundaries = null;
 
@@ -121,7 +127,7 @@ define(
 
                 };
 
-                var drawBoundaries = function () {
+                drawBoundaries = function () {
 
                     // first clear the boundaries if we have any.
                     if (boundaries) {
@@ -247,7 +253,7 @@ define(
             },
             startIntro: function(){
 
-                intro.startIntro(map);
+                intro.startIntro(map, drawBoundaries, changeSelectedYear);
 
             }
         };

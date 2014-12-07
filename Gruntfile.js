@@ -3,10 +3,10 @@ module.exports = function(grunt) {
 	requirejs: {
 		development: {
 			options: {
-				mainConfigFile: 'src/js/common.js',
+				mainConfigFile: 'src/public/js/common.js',
 				baseUrl:'.',
-				appDir: 'src/js',
-				dir: 'src/js-built',
+				appDir: 'src/public/js',
+				dir: 'src/public/js-built',
 				optimize: 'none',
 				modules: [
 					{
@@ -22,10 +22,10 @@ module.exports = function(grunt) {
 		},
 		production: {
 			options: {
-				mainConfigFile: 'src/js/common.js',
+				mainConfigFile: 'src/public/js/common.js',
 				baseUrl:'.',
-				appDir: 'src/js',
-				dir: 'src/js-built',
+				appDir: 'src/public/js',
+				dir: 'src/public/js-built',
 				optimize: 'uglify',
 				modules: [ 
 					{
@@ -48,7 +48,7 @@ module.exports = function(grunt) {
           optimization: 0
         },
         files: {
-          "src/css/main.css": "src/css/less/main.less"
+          "src/css/main.css": "src/public/css/less/main.less"
         }
       },
 	  production: {
@@ -58,13 +58,13 @@ module.exports = function(grunt) {
           optimization: 2
         },
         files: {
-          "src/css/main.css": "src/css/less/main.less"
+          "src/css/main.css": "src/public/css/less/main.less"
         }
 	  }
     },
     watch: {
       styles: {
-        files: ['src/css/less/**/*.less','src/js/**/*.js'], // which files to watch
+        files: ['src/public/css/less/**/*.less','src/public/js/**/*.js'], // which files to watch
         tasks: ['less:development','requirejs:development'],
         options: {
           nospawn: true

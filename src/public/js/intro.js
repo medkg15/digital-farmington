@@ -1,10 +1,10 @@
-define(['mapOverlay', 'async!http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyD0K-y2C9IH2lUf6_kOt8Dvd9TOlZq7sqk', 'maplabel'], function(mapOverlay, googleMaps, MapLabel){
+define(['mapOverlay', 'async!http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyD0K-y2C9IH2lUf6_kOt8Dvd9TOlZq7sqk', 'maplabel'], function (mapOverlay, googleMaps, MapLabel) {
 
     var allEvents = [];
     var introDone = false;
     var lastText;
 
-    var startIntro = function(map){
+    var startIntro = function (map, drawBoundaries, selectedYear) {
 
         var welcomeText = new MapLabel({
             text: 'Welcome to Digital Farmington',
@@ -41,18 +41,6 @@ define(['mapOverlay', 'async!http://maps.google.com/maps/api/js?sensor=false&key
         });
         colonialText.setMap(null);
 
-        var eighteenText = new MapLabel({
-            text: 'To the 1800s',
-            position: new google.maps.LatLng(42.099942, -72.774755),
-            map: map,
-            minZoom: 3,
-            maxZoom: 15,
-            fontSize: 34,
-            fontColor: '#ff0000',
-            align: 'center'
-        });
-        eighteenText.setMap(null);
-
         var todayText = new MapLabel({
             text: 'To Today',
             position: new google.maps.LatLng(41.7349, -72.791163),
@@ -65,27 +53,15 @@ define(['mapOverlay', 'async!http://maps.google.com/maps/api/js?sensor=false&key
         todayText.setMap(null);
 
         var boundaryText = new MapLabel({
-            text: 'See Borders Change',
+            text: 'And See Borders Change',
             position: new google.maps.LatLng(41.890669, -72.824893),
             map: map,
-            fontSize: 29,
+            fontSize: 26,
             maxZoom: 16,
             fontColor: '#ff0000',
             align: 'center'
         });
         boundaryText.setMap(null);
-
-        var comeGoText = new MapLabel({
-            text: 'And Sites Come and Go',
-            position: new google.maps.LatLng(41.728, -72.824690),
-            map: map,
-            fontSize: 27,
-            fontColor: '#ff0000',
-            minZoom: 15,
-            maxZoom: 17,
-            align: 'center'
-        });
-        comeGoText.setMap(null);
 
         var enjoyText = new MapLabel({
             text: 'Enjoy!',
@@ -109,12 +85,11 @@ define(['mapOverlay', 'async!http://maps.google.com/maps/api/js?sensor=false&key
 
         // The photograph
         var srcImage = '/images/Colonies_1763.jpg';
-        var srcImage2 = '/images/1800sCT.jpg';
 
         var currentZoom;
         lastText = welcomeText;
 
-        //Takes a new desired zoom level. Then zooms into it 1 zoom per .75 seconds to make it smoooooth.
+        //Takes a new desired zoom level. Then zooms into it 2 zoom per .45 seconds to make it smoooooth.
         var smoothZoom = function (newZoom) {
             currentZoom = map.getZoom();
 
@@ -140,116 +115,77 @@ define(['mapOverlay', 'async!http://maps.google.com/maps/api/js?sensor=false&key
             exploreText.setMap(map);
             lastText = exploreText;
             smoothZoom(16);
-        }, 3000));
-
-        //Smooth out to the East Coast
-        allEvents.push(setTimeout(function () {
-            exploreText.setMap(null);
-            smoothZoom(5);
-        }, 8000));
-
-        //Show the colonial America map and "From Colonial America"
-        allEvents.push(setTimeout(function () {
-            overlay.setMap(map);
-            colonialText.setMap(map);
-            lastText = colonialText;
-        }, 13500));
-
-        //Remove colonial America map and text. Then zoom to CT.
-        allEvents.push(setTimeout(function () {
-            colonialText.setMap(null);
-            smoothZoom(9);
-            map.panTo(new google.maps.LatLng(41.607955, -72.689579));
-        }, 16500));
-
-        //Show the 1800s CT map overlay and text.
-        allEvents.push(setTimeout(function () {
-            overlay.setMap(null);
-            overlay = new MapOverlay(bounds2, srcImage2, map);
-            eighteenText.setMap(map);
-            lastText = eighteenText;
-        }, 18500));
-
-        //Remove the 1800s overlay, go to the Uconn Medical Center.
-        allEvents.push(setTimeout(function () {
-            map.panTo(new google.maps.LatLng(41.731445, -72.791100));
-            eighteenText.setMap(null);
-            smoothZoom(16);
-        }, 21500));
-
-        //Show the 1800s CT map overlay and text.
-        allEvents.push(setTimeout(function () {
-            overlay.setMap(null);
-            todayText.setMap(map);
-            lastText = todayText;
-        }, 23500));
+        }, 6000));
 
         //Event to show change borders over time
         allEvents.push(setTimeout(function () {
-            todayText.setMap(null);
-            map.set('minZoom', 9);
-            smoothZoom(10);
-        }, 26500));
+                exploreText.setMap(null);
+                boundaryText.setMap(map);
+                smoothZoom(10);
+                lastText = boundaryText;
+            }, 12000));
 
         allEvents.push(setTimeout(function () {
-            boundaryText.setMap(map);
-            lastText = boundaryText;
-            var i = 2500;
-            while (i < 5500) {
-                allEvents.push(setTimeout(function () {
-                    selectedYear = 1900;
-                    drawBoundaries();
-                }, i));
-                i = i + 1000;
-                allEvents.push(setTimeout(function () {
-                    selectedYear = 1610;
-                    drawBoundaries();
-                }, i));
-                i = i + 1000;
-            }
-        }, 28500));
+                var i = 2500;
+                while (i < 5500) {
+                    allEvents.push(setTimeout(function () {
+                            selectedYear(1900);
+                            drawBoundaries();
+                        }, i));
+                    i = i + 1000;
+                    allEvents.push(setTimeout(function () {
+                            selectedYear(1610);
+                            drawBoundaries();
+                        }, i));
+                    i = i + 1000;
+                }
+            }, 13500));
 
-        //Sites Come and Go
+        //Smooth out to the East Coast
         allEvents.push(setTimeout(function () {
-            boundaryText.setMap(null);
-            map.panTo(new google.maps.LatLng(41.721774, -72.824690));
-            comeGoText.setMap(map);
-            lastText = comeGoText;
-            smoothZoom(15);
-        }, 34500));
+                boundaryText.setMap(null);
+                smoothZoom(5);
+            }, 19000));
 
+        //Show the colonial America map and "From Colonial America"
         allEvents.push(setTimeout(function () {
-            var i = 2500;
-            while (i < 5500) {
-                allEvents.push(setTimeout(function () {
-                    selectedYear = 9999;
-                    updatePOIs();
-                }, i));
-                i = i + 1000;
-                allEvents.push(setTimeout(function () {
-                    selectedYear = 1920;
-                    updatePOIs();
-                }, i));
-                i = i + 1000;
-            }
-        }, 36500));
+                overlay.setMap(map);
+                colonialText.setMap(map);
+                lastText = colonialText;
+            }, 21000));
 
+        //Go to the UCONN Medical Center.
         allEvents.push(setTimeout(function () {
-            enjoyText.setMap(map);
-            map.panTo(new google.maps.LatLng(41.7321983, -72.8352574));
-            smoothZoom(10);
-            lastText = enjoyText;
-        }, 42000));
+                overlay.setMap(null);
+                colonialText.setMap(null);
+                map.panTo(new google.maps.LatLng(41.731445, -72.791100));
+                smoothZoom(16);
+            }, 25000));
+
+        //Show the Farmington Health Center and text
+        allEvents.push(setTimeout(function () {
+                todayText.setMap(map);
+                lastText = todayText;
+            }, 25500));
 
         allEvents.push(setTimeout(function () {
-            enjoyText.setMap(null);
-            introDone = true;
-        }, 46500));
+                map.set('minZoom', 9);
+                todayText.setMap(null);
+                enjoyText.setMap(map);
+                smoothZoom(10);
+                lastText = enjoyText;
+            }, 32000));
+
+        //Intro is done. Remove everything.
+        allEvents.push(setTimeout(function () {
+                enjoyText.setMap(null);
+                introDone = true;
+            }, 38000));
     };
 
     return {
         startIntro: startIntro,
-        stopIntro: function(){
+        stopIntro: function () {
             //Called if you use the slider during the intro. Kills all the timed events.
             lastText.setMap(null);
 
@@ -258,7 +194,7 @@ define(['mapOverlay', 'async!http://maps.google.com/maps/api/js?sensor=false&key
             }
             allEvents = [];
         },
-        isDone: function(){
+        isDone: function () {
             return introDone;
         }
     };
