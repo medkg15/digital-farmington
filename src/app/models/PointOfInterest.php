@@ -16,6 +16,6 @@ class PointOfInterest extends Eloquent
 
     public function photos()
     {
-        return $this->hasMany('photo');
+        return $this->hasMany('Photo');
     }
 }
