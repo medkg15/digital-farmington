@@ -82,7 +82,7 @@
                 </a>
             </div>
             <div class="col-md-2">
-                <p class="titleNameMap">Town and City Atlas of the State of CT <p />
+                <p class="titleNameMap">Town and City Atlas of CT <p />
                 <img src="images/titlecaret.png" alt="" width="15" height="6" style="margin-left:5px; margin-top:-10px; position:absolute;" />
 
                 <a class="thumbnail" data-toggle="modal" data-target="#popup-4">
