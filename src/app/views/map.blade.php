@@ -55,7 +55,7 @@
 
 	    <!-- mapsframe -->
 		<div id="mapsframe">
-        
+         <div class="row">
         
             <div class="col-md-2">
                 <p class="titleNameMap">Colonies of CT  &amp;<br/> RI <p />
@@ -97,7 +97,7 @@
                     <img src="images/historic/thumb-5.jpg" alt="Historical Maps" width="350" height="1" />
                 </a>
             </div>
-       
+       </div>
     </div>
 	 </div>
 
