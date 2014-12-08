@@ -54,11 +54,19 @@ define(
 
                 var updatePOIs = function () {
 
+                    var categoryCount = $('input[name=categories]').length;
+
                     selectedCategories = $('input[name=categories]:checked').map(function () {
                         return $(this).val();
                     }).get();
 
                     var currentPOIs = _.filter(pois, function (poi) {
+
+                        if(poi.categories.length === 0 && categoryCount === selectedCategories.length)
+                        {
+                            return true;
+                        }
+
                         var forSelectedEra = _.some(poi.eras, function (era) {
                             return era.label == selectedYear
                         });
