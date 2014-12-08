@@ -24,19 +24,16 @@
         <!--/ sidecenter -->
         <!-- sideright -->
         <div id="sideright">
-            <div class="col-md-3">
                 <h3>
                     <img src="images/filterCategories.png" alt="Filter Categories" />
                 </h3>
                 @foreach($categories as $category)
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="categories" value="{{$category->label}}"
-                                   checked/> {{ $category->label }}
+                            <input type="checkbox" name="categories" value="{{$category->label}}" checked/><img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|{{$category->color}}" style="height:20px;"/>&nbsp;{{ $category->label }}
                         </label>
                     </div>
                 @endforeach
-            </div>
         </div>
         <!--/ sideright -->
     </div>
@@ -111,8 +108,9 @@
 
                 var pois = {{ json_encode($pois) }};
 
-                map.initialize(eras, pois);
-         //       map.startIntro();
+                var colors = {{ json_encode($colors) }};
+
+                map.initialize(eras, pois, null, null, colors);
             });
         });
     </script>

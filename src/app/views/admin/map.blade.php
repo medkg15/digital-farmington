@@ -26,20 +26,17 @@
         <!--/ sidecenter -->
         <!-- sideright -->
         <div id="sideright">
-            <div class="col-md-3">
-                <h3>
-                    <img src="/images/filterCategories.png" alt="Filter Categories" />
-                </h3>
-                 @foreach($categories as $category)
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="categories" value="{{$category->label}}"
-                                   checked/> {{ $category->label }}
-                        </label>
-                    </div>
-                @endforeach
-            </div>
-        </div>
+                        <h3>
+                            <img src="images/filterCategories.png" alt="Filter Categories" />
+                        </h3>
+                        @foreach($categories as $category)
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="categories" value="{{$category->label}}" checked/><img src="http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|{{$category->color}}" style="height:20px;"/>&nbsp;{{ $category->label }}
+                                </label>
+                            </div>
+                        @endforeach
+                </div>
         <!--/ sideright -->
     </div>
 @stop
@@ -52,6 +49,8 @@
 
                     var pois = {{ json_encode($pois) }};
 
+                    var colors = {{ json_encode($colors) }};
+
                     map.initialize(eras, pois, function(e){
 
                         if(confirm('Create a new Point of Interest?'))
@@ -63,7 +62,7 @@
                         {
                             window.location = '/admin/poi/' + poi.id;
                         }
-                    });
+                    }, colors);
             });
         });
     </script>

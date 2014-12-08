@@ -79,58 +79,57 @@ if(array_key_exists('data', $_FILES))
             }, $photos));
         }
 
-        // add categories
-        $existing_categories = DB::query('select id, label from category');
+        if($categories) {
+            // add categories
+            $existing_categories = DB::query('select id, label from category');
 
-        $category_lookup = array();
-        foreach($existing_categories as $existing_category)
-        {
-            $category_lookup[$existing_category['label']] = $existing_category['id'];
-        }
-
-        $inserts = array();
-        foreach ($categories as $category) {
-
-            if(!array_key_exists($category, $category_lookup))
-            {
-                DB::queryFirstField(' insert into category (label, position)  select %s, count(*) from category;', $category);
-                $category_lookup[$category] = DB::insertId();
+            $category_lookup = array();
+            foreach ($existing_categories as $existing_category) {
+                $category_lookup[$existing_category['label']] = $existing_category['id'];
             }
 
-            $inserts[] = array(
-                'point_of_interest_id' => $poiID,
-                'category_id' => $category_lookup[$category]
-            );
-        }
+            $inserts = array();
+            foreach ($categories as $category) {
 
-        DB::insert('point_of_interest_category', $inserts);
+                if (!array_key_exists($category, $category_lookup)) {
+                    DB::queryFirstField(' insert into category (label, position)  select %s, count(*) from category;', $category);
+                    $category_lookup[$category] = DB::insertId();
+                }
 
-        // add eras
-        $existing_eras = DB::query('select id, label from era');
-
-        $era_lookup = array();
-        foreach($existing_eras as $existing_era)
-        {
-            $era_lookup[$existing_era['label']] = $existing_era['id'];
-        }
-
-        $inserts = array();
-        foreach ($years as $year) {
-
-            if(!array_key_exists($year, $era_lookup))
-            {
-                DB::queryFirstField(' insert into era (label) values (%s);', $year);
-                $era_lookup[$year] = DB::insertId();
+                $inserts[] = array(
+                    'point_of_interest_id' => $poiID,
+                    'category_id' => $category_lookup[$category]
+                );
             }
 
-            $inserts[] = array(
-                'point_of_interest_id' => $poiID,
-                'era_id' => $era_lookup[$year]
-            );
+            DB::insert('point_of_interest_category', $inserts);
         }
 
-        DB::insert('point_of_interest_era', $inserts);
+        if($years) {
+            // add eras
+            $existing_eras = DB::query('select id, label from era');
 
+            $era_lookup = array();
+            foreach ($existing_eras as $existing_era) {
+                $era_lookup[$existing_era['label']] = $existing_era['id'];
+            }
+
+            $inserts = array();
+            foreach ($years as $year) {
+
+                if (!array_key_exists($year, $era_lookup)) {
+                    DB::queryFirstField(' insert into era (label) values (%s);', $year);
+                    $era_lookup[$year] = DB::insertId();
+                }
+
+                $inserts[] = array(
+                    'point_of_interest_id' => $poiID,
+                    'era_id' => $era_lookup[$year]
+                );
+            }
+
+            DB::insert('point_of_interest_era', $inserts);
+        }
         DB::commit();
     }
 }

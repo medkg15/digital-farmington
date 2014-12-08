@@ -7,7 +7,7 @@ define(
         var changeSelectedYear;
 
         return {
-            initialize: function(eras, pois, onMapClick, onMarkerClick){
+            initialize: function(eras, pois, onMapClick, onMarkerClick, colorLookup){
                 var mapOptions = {
                     center: {lat: 41.7321983, lng: -72.8352574},
                     zoom: 10,
@@ -47,11 +47,14 @@ define(
                 var titleInfoWindow = new google.maps.InfoWindow({});
                 var summaryInfoWindow = new google.maps.InfoWindow({});
                 var currentSummaryMarker = null;
+                var selectedCategories = $('input[name=categories]:checked').map(function () {
+                    return $(this).val();
+                }).get();
                 var pois = pois;
 
                 var updatePOIs = function () {
 
-                    var selectedCategories = $('input[name=categories]:checked').map(function () {
+                    selectedCategories = $('input[name=categories]:checked').map(function () {
                         return $(this).val();
                     }).get();
 
@@ -76,13 +79,32 @@ define(
                     for (var index in currentPOIs) {
 
                         (function () {
+
                             var poi = currentPOIs[index];
+
+                            var pinColor = "FE7569";
+
+                            var poiCats = _.map(poi.categories, function(cat){return cat.label});
+
+                           var both =  _.intersection(poiCats, selectedCategories);
+
+                            if (both.length > 0 && colorLookup.hasOwnProperty(both[0]))
+                            {
+                                pinColor = colorLookup[both[0]];
+                            }
+
+                            var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+                                new google.maps.Size(21, 34),
+                                new google.maps.Point(0,0),
+                                new google.maps.Point(10, 34));
+
                             var marker = new google.maps.Marker({
                                 position: new google.maps.LatLng(poi.latitude, poi.longitude),
                                 map: map,
                                 poi: poi,
                                 titleInfoWindow: null,
-                                summaryInfoWindow: null
+                                summaryInfoWindow: null,
+                                icon: pinImage
                             });
 
                             google.maps.event.addListener(marker, 'mouseover', function () {
