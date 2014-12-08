@@ -24,7 +24,7 @@
             </div>
 			<div id= "intro">
 		        <img src="images/Introduction.png" alt="Introduction" />
-		        <p style="color:black;"><button onclick="map.startIntro()">View an introduction map</button> </p>
+		        <p style="color:black;"><button id="intro">View an introduction map</button> </p>
 		    </div>
         </div>
         <!--/ sidecenter -->
@@ -121,6 +121,10 @@
                 var colors = {{ json_encode($colors) }};
 
                 map.initialize(eras, pois, null, null, colors);
+
+                $('#intro').click(function(){
+                    map.startIntro();
+                });
             });
         });
     </script>
