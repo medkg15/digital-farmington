@@ -211,12 +211,12 @@ h5 {
 
     background-color: #ede9e9 !important;
     height: 100%;
-    width: 940px;
+    width: 900px;
     text-align: left;
     vertical-align: top;
     color: #ee741f !important;
     margin-top: 0px;
-    margin-left: 20px;
+    margin-left: 0px;
     padding-top: 0px;
     padding-bottom: 0px;
     padding-left: 0px;
@@ -309,4 +309,5 @@ h5 {
 
 #selectyear {
     padding-top: 12px;
+	padding-bottom: 10px;
 }

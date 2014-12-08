@@ -1,7 +1,9 @@
 @extends('layout')
 
 @section('content')
-
+<!--/ content1 -->
+	  <div id="content1">
+	  
     <div class="row">
         <!-- sidecenter -->
         <div id="sidecenter">
@@ -20,8 +22,13 @@
                     @endforeach
                 </div>
             </div>
+			<div id= "intro">
+		        <img src="images/Introduction.png" alt="Introduction" />
+		        <p style="color:black;"><button onclick="map.startIntro()">View an introduction map</button> </p>
+		    </div>
         </div>
         <!--/ sidecenter -->
+		
         <!-- sideright -->
         <div id="sideright">
                 <h3>
@@ -38,13 +45,13 @@
         <!--/ sideright -->
     </div>
 
+<!--/ content1 -->		
+ </div>	
+	
     <!-- clear --><div class="clearer"><span></span></div><!--/ clear -->
     <!-- main-text-draw1 -->
     <div id="main-text-draw1">
-		<div id= "intro">
-		<img src="images/Introduction.png" alt="Introduction" />
-		<p style="color:black;"><button onclick="map.startIntro()">View an introduction map</button> </p>
-		</div>
+		
         <img src="images/historicMaps.jpg" alt="Historical Maps" style="margin-left:0px; margin-top:0px; position:relative; border:0px;" />
 
         <div class="row">
