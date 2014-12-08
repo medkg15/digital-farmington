@@ -4,7 +4,7 @@
 {{ View::make('admin.header'); }}
     <h1>Manage Point of Interest</h1>
     @if(isset($poi))
-        {{ Form::model($poi, ['action' => ['PointOfInterestController@save', $poi->id], 'method' => 'patch']) }}
+        {{ Form::model($poi, ['action' => ['PointOfInterestController@save', $poi->id], 'method' => 'post']) }}
     @else
         {{ Form::open(['action' => 'PointOfInterestController@save']) }}
     @endif
@@ -26,13 +26,13 @@
 
             <div class="form-group">
                 {{Form::label('latitude', 'Latitude')}}
-                {{ Form::text('latitude', Input::old('latitude'), array('class' => 'form-control')) }}
+                {{ Form::text('latitude', Input::old('latitude') ? Input::old('latitude') : Input::get('latitude'), array('class' => 'form-control')) }}
 
             </div>
 
             <div class="form-group">
                 {{Form::label('longitude', 'Longitude')}}
-                {{ Form::text('longitude', Input::old('longitude'), array('class' => 'form-control')) }}
+                {{ Form::text('longitude', Input::old('longitude') ? Input::old('longitude') :  Input::get('longitude'), array('class' => 'form-control')) }}
             </div>
 
             <div class="checkbox">

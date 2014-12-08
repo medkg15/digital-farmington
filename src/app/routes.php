@@ -18,8 +18,8 @@ Route::get('/admin/category', array('before' => 'auth','uses' => 'CategoryContro
 Route::post('/admin/category', array('before' => 'auth','uses' => 'CategoryController@save'));
 Route::get('/admin/list', array('before' => 'auth','uses' => 'ListController@showList'));
 Route::get('admin/poi', array('before' => 'auth', 'uses' => 'PointOfInterestController@showEdit'));
-Route::get('admin/poi/{id}', array('before' => 'auth', 'uses' => 'PointOfInterestController@showEdit'));
-Route::post('admin/poi/{id}', array('before' => 'auth', 'uses' => 'PointOfInterestController@save'));
+Route::get('admin/poi', array('before' => 'auth', 'uses' => 'PointOfInterestController@showEdit'));
+Route::post('admin/poi', array('before' => 'auth', 'uses' => 'PointOfInterestController@save'));
 
 Route::get('/login', array('uses' => 'LoginController@showLogin'));
 Route::post('/login', array('uses' => 'LoginController@doLogin'));
