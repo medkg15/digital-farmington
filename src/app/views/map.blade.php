@@ -40,57 +40,53 @@
 
         <div class="row">
             <div class="col-md-2">
-
-                <p class="titleNameMap">Name Map1 <p />
-                <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left: 3px; margin-top: -10px; position: absolute;" />
-
-                <a class="thumbnail" data-toggle="modal" data-target="#myModal">
-                    <img src="images/1800sCT213x157.jpg" alt="Historical Maps" width="350" height="150" />
-                </a>
-            </div>
-            <div class="col-md-2">
-                <p class="titleNameMap">Name Map2 <p />
+                <p class="titleNameMap">Colonies of CT  &amp;<br/> RI <p />
                 <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" />
 
-                <a class="thumbnail" data-toggle="modal" data-target="#myModal">
-                    <img src="images/1800sCT213x157.jpg" alt="Historical Maps" width="350" height="150" />
+                <a class="thumbnail" data-toggle="modal" data-target="#popup-1">
+                    <img src="images/historic/thumb-1.jpg" alt="Historical Maps" width="350" height="150" />
                 </a>
             </div>
             <div class="col-md-2">
-                <p class="titleNameMap">Name Map3 <p />
+                <p class="titleNameMap">Birds-Eye View of Unionville <p />
                 <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" />
 
-                <a class="thumbnail" data-toggle="modal" data-target="#myModal">
-                    <img src="images/1800sCT213x157.jpg" alt="Historical Maps" width="350" height="1" />
+                <a class="thumbnail" data-toggle="modal" data-target="#popup-2">
+                    <img src="images/historic/thumb-2.jpg" alt="Historical Maps" width="350" height="150" />
                 </a>
             </div>
             <div class="col-md-2">
-                <p class="titleNameMap">Name Map4 <p />
+                <p class="titleNameMap">New York City and Vicinity<p />
                 <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" />
 
-                <a class="thumbnail" data-toggle="modal" data-target="#myModal">
-                    <img src="images/1800sCT213x157.jpg" alt="Historical Maps" width="350" height="1" />
+                <a class="thumbnail" data-toggle="modal" data-target="#popup-3">
+                    <img src="images/historic/thumb-3.jpg" alt="Historical Maps" width="350" height="1" />
                 </a>
             </div>
             <div class="col-md-2">
-                <p class="titleNameMap">Name Map5 <p />
+                <p class="titleNameMap">Town and City Atlas of the State of CT <p />
                 <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" />
 
-                <a class="thumbnail" data-toggle="modal" data-target="#myModal">
-                    <img src="images/1800sCT213x157.jpg" alt="Historical Maps" width="350" height="1" />
+                <a class="thumbnail" data-toggle="modal" data-target="#popup-4">
+                    <img src="images/historic/thumb-4.jpg" alt="Historical Maps" width="350" height="1" />
                 </a>
             </div>
             <div class="col-md-2">
-                <p class="titleNameMap">
-                    Name Map6
-                    </p>
-                    <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;">
-                    <a class="thumbnail" data-toggle="modal" data-target="#myMod">
-                        <img src="images/1800sCT213x157.jpg" alt="Historical Maps" width="350" />
-                    </a>
+                <p class="titleNameMap">Novi Belgii Novaeque Angliae <p />
+                <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" />
+
+                <a class="thumbnail" data-toggle="modal" data-target="#popup-5">
+                    <img src="images/historic/thumb-5.jpg" alt="Historical Maps" width="350" height="1" />
+                </a>
             </div>
         </div>
     </div>
+
+    {{ View::make('maps.popup-1'); }}
+    {{ View::make('maps.popup-2'); }}
+    {{ View::make('maps.popup-3'); }}
+    {{ View::make('maps.popup-4'); }}
+    {{ View::make('maps.popup-5'); }}
 @stop
 
 @section('scripts')

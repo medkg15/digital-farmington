@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
 
@@ -13,13 +13,13 @@
         <div id="header">
             <div id="header-left">
                 <a class="navbar-brand" href="/" title="Explore Farmington on the timeline">
-                    <img src="images/DigitalFarmington.png" alt="Digital Farmington" style="margin-left:0px; margin-top:-5px; position:relative; border:0px;" />
+                    <img src="/images/DigitalFarmington.png" alt="Digital Farmington" style="margin-left:0px; margin-top:-5px; position:relative; border:0px;" />
                 </a>
             </div>
 
             <div id="header-right">
                 <a href="http://www.stanleywhitman.org/" title="Stanley Whitman House Web">
-                    <img src="images/StanleyWhitmanHName.png" alt="StanleyWhitman House" style="margin-right:25px; margin-top:10px; position:relative; border:0px;" width="250" height="30" />
+                    <img src="/images/StanleyWhitmanHName.png" alt="StanleyWhitman House" style="margin-right:25px; margin-top:10px; position:relative; border:0px;" width="250" height="30" />
                 </a>
             </div>
 

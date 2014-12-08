@@ -7,7 +7,7 @@ define(
         var changeSelectedYear;
 
         return {
-            initialize: function(eras, pois){
+            initialize: function(eras, pois, onMapClick, onMarkerClick){
                 var mapOptions = {
                     center: {lat: 41.7321983, lng: -72.8352574},
                     zoom: 10,
@@ -99,10 +99,17 @@ define(
                             });
 
                             google.maps.event.addListener(marker, 'click', function () {
-                                summaryInfoWindow.setContent('<h3>' + poi.name + "</h3>" + poi.description + '<p><a href="#" id="learn-more">Learn More</a></p>');
-                                summaryInfoWindow.open(map, this);
-                                currentSummaryMarker = marker;
-                                titleInfoWindow.close();
+
+                                if(onMarkerClick)
+                                {
+                                    onMarkerClick(poi);
+                                }
+                                else {
+                                    summaryInfoWindow.setContent('<h3>' + poi.name + "</h3>" + poi.description + '<p><a href="#" id="learn-more">Learn More</a></p>');
+                                    summaryInfoWindow.open(map, this);
+                                    currentSummaryMarker = marker;
+                                    titleInfoWindow.close();
+                                }
                             });
                             markers.push(marker);
                         })();
@@ -173,9 +180,12 @@ define(
                     currentSummaryMarker = null;
                 });
 
-                google.maps.event.addListener(map, 'click', function () {
+                google.maps.event.addListener(map, 'click', function (e) {
                     summaryInfoWindow.close();
                     currentSummaryMarker = null;
+                    if (onMapClick){
+                        onMapClick(e);
+                    }
                 });
 
                 updatePOIs();

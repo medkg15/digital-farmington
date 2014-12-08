@@ -14,6 +14,12 @@
 Route::get('/', 'MapController@displayPublic');
 
 Route::get('/admin', array('before' => 'auth','uses' => 'MapController@displayAdmin'));
+Route::get('/admin/category', array('before' => 'auth','uses' => 'CategoryController@show'));
+Route::post('/admin/category', array('before' => 'auth','uses' => 'CategoryController@save'));
+Route::get('/admin/list', array('before' => 'auth','uses' => 'ListController@showList'));
+Route::get('admin/poi', array('before' => 'auth', 'uses' => 'PointOfInterestController@showEdit'));
+Route::get('admin/poi/{id}', array('before' => 'auth', 'uses' => 'PointOfInterestController@showEdit'));
+Route::post('admin/poi/{id}', array('before' => 'auth', 'uses' => 'PointOfInterestController@save'));
 
 Route::get('/login', array('uses' => 'LoginController@showLogin'));
 Route::post('/login', array('uses' => 'LoginController@doLogin'));

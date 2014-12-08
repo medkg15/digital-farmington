@@ -40,7 +40,18 @@
 
                     var pois = {{ json_encode($pois) }};
 
-                    map.initialize(eras, pois);
+                    map.initialize(eras, pois, function(e){
+
+                        if(confirm('Create a new Point of Interest?'))
+                        {
+                            window.location = '/admin/poi?latitude='+e.latLng.lat()+'&longitude='+e.latLng.lng()
+                        }
+                    }, function(poi){
+                        if(confirm('Edit ' + poi.name + '?'))
+                        {
+                            window.location = '/admin/poi/' + poi.id;
+                        }
+                    });
             });
         });
     </script>
