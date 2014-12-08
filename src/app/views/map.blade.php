@@ -1,7 +1,9 @@
 @extends('layout')
 
 @section('content')
-
+<!--/ content1 -->
+	  <div id="content1">
+	  
     <div class="row">
         <!-- sidecenter -->
         <div id="sidecenter">
@@ -37,6 +39,9 @@
         <!--/ sideright -->
     </div>
 
+<!--/ content1 -->		
+ </div>	
+	
     <!-- clear --><div class="clearer"><span></span></div><!--/ clear -->
     <!-- main-text-draw1 -->
     <div id="main-text-draw1">
