@@ -2,8 +2,10 @@
 
 class PointOfInterestController extends BaseController
 {
-    public function showEdit($id = null)
+    public function showEdit()
     {
+        $id = Input::get('id');
+
         $eras = Era::all();
         $categories = Category::all();
 
@@ -20,8 +22,10 @@ class PointOfInterestController extends BaseController
         return View::make('admin.pointOfInterest')->with('poi', $poi)->with('eras', $eras)->with('categories', $categories);
     }
 
-    public function save($id = null)
+    public function save()
     {
+        $id = Input::get('id');
+
         if($id) {
             $poi = PointOfInterest::find($id);
         }
@@ -32,7 +36,7 @@ class PointOfInterestController extends BaseController
 
         $poi->name = Input::get('name');
         $poi->description = Input::get('description');
-        $poi->display = Input::get('display');
+        $poi->display = Input::get('display', (int)0);
         $poi->latitude = Input::get('latitude');
         $poi->longitude = Input::get('longitude');
 

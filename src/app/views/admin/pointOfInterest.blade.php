@@ -4,7 +4,7 @@
 {{ View::make('admin.header'); }}
     <h1>Manage Point of Interest</h1>
     @if(isset($poi))
-        {{ Form::model($poi, ['action' => ['PointOfInterestController@save', $poi->id], 'method' => 'post']) }}
+        {{ Form::model($poi, ['action' => ['PointOfInterestController@save', 'id'=>$poi->id], 'method' => 'post']) }}
     @else
         {{ Form::open(['action' => 'PointOfInterestController@save']) }}
     @endif
@@ -37,7 +37,7 @@
 
             <div class="checkbox">
               <label>
-                {{Form::checkbox('display')}}
+                {{Form::checkbox('display', 'true', true)}}
                 Show On Map?
               </label>
             </div>
