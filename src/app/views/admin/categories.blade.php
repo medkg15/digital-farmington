@@ -1,6 +1,9 @@
 @extends('layout')
 
 @section('content')
+
+{{ View::make('admin.header'); }}
+
 <h1>Rename Categories</h1>
 
         {{ Form::open(['action' => 'CategoryController@save']) }}

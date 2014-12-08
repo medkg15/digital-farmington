@@ -1,14 +1,26 @@
 @extends('layout')
 
 @section('content')
+{{ View::make('admin.header'); }}
+
+    <p>Click the map to add a Point of Interest, or an existing Point of Interest to modify it.</p>
     <div class="row">
         <!-- sidecenter -->
         <div id="sidecenter">
             <div id="map">
             </div>
             <div id="selectyear">
-                <img src="images/selectaYear.png" alt="Select a Year" />
-                <input name="era" type="text" />
+                <img src="/images/selectaYear.png" alt="Select a Year" />
+                <div class="slide-container">
+                    <input name="era" type="text" />
+                </div>
+                  <div style="margin: 0 0 0 10px;">
+                    @foreach($eras as $era)
+
+                        <button class="btn" style="width:{{ floor(100 / count($eras)-1) }}%;">{{ $era }}</button>
+
+                    @endforeach
+                </div>
             </div>
         </div>
         <!--/ sidecenter -->
@@ -16,7 +28,7 @@
         <div id="sideright">
             <div class="col-md-3">
                 <h3>
-                    <img src="images/filterCategories.png" alt="Filter Categories" />
+                    <img src="/images/filterCategories.png" alt="Filter Categories" />
                 </h3>
                  @foreach($categories as $category)
                     <div class="checkbox">

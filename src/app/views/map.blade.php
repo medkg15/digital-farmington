@@ -9,7 +9,16 @@
             </div>
             <div id="selectyear">
                 <img src="images/selectaYear.png" alt="Select a Year" />
-                <input name="era" type="text" />
+                 <div class="slide-container">
+                    <input name="era" type="text" />
+                </div>
+                <div style="margin: 0 0 0 10px;">
+                    @foreach($eras as $era)
+
+                        <button class="btn" style="width:{{ floor(100 / count($eras)-1) }}%;">{{ $era }}</button>
+
+                    @endforeach
+                </div>
             </div>
         </div>
         <!--/ sidecenter -->

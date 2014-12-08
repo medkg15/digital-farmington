@@ -220,6 +220,13 @@ define(
                     }
                 });
 
+                $('#selectyear .btn').click(function(){
+                    selectedYear = parseInt($(this).text(), 10);
+                    updatePOIs();
+                    drawBoundaries();
+                    $('input[name=era]').slider('setValue', selectedYear);
+                });
+
                 $(document).on('change', 'input[name=categories]', updatePOIs);
 
                 $(document).on('click', '#learn-more', function (e) {

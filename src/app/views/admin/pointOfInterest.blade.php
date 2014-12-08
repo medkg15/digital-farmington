@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+{{ View::make('admin.header'); }}
     <h1>Manage Point of Interest</h1>
     @if(isset($poi))
         {{ Form::model($poi, ['action' => ['PointOfInterestController@save', $poi->id], 'method' => 'patch']) }}

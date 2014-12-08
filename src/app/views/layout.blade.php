@@ -45,6 +45,13 @@
                 <div id="menubottom">
                     <div id="menubottom-left">
                         <a href="http://www.stanleywhitman.org" title="About">Stanley-Whitman House</a>
+|
+                        @if (!Auth::check())
+
+                            <a href="{{ action('LoginController@showLogin'); }}">Log In</a>
+                        @else
+                            <a href="{{ action('LoginController@doLogout'); }}">Log Out</a>
+                        @endif
                     </div>
 
                 </div>

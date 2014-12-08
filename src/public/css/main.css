@@ -23,6 +23,9 @@
 .slider.slider-horizontal {
   width: 100%;
 }
+.slide-container {
+  padding: 50px 50px 0 50px;
+}
 a.sort {
   cursor: pointer;
 }
@@ -37,6 +40,10 @@ a.sort.asc:after {
   font-family: 'Glyphicons Halflings';
   padding: 0 5px;
   text-decoration: none;
+}
+#selectyear .btn {
+  margin: 0 0 0 4px;
+  padding: 0;
 }
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 html {

@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+{{ View::make('admin.header'); }}
 <h1>Point of Interest Database</h1><div id="pois">
 <input class="search form-control" placeholder="Search" />
     <table class="table table-border table-condensed" >

@@ -2,11 +2,6 @@
 
 class PointOfInterestController extends BaseController
 {
-    public function showCreate()
-    {
-        return View::make('admin.pointOfInterest');
-    }
-
     public function showEdit($id = null)
     {
         $eras = Era::all();
