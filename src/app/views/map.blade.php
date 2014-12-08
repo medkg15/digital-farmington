@@ -51,10 +51,11 @@
     <!-- clear --><div class="clearer"><span></span></div><!--/ clear -->
     <!-- main-text-draw1 -->
     <div id="main-text-draw1">
+	<img src="images/historicMaps.jpg" alt="Historical Maps" style="margin-left:0px; margin-top:0px; position:relative; border:0px;" />
+
 	    <!-- mapsframe -->
 		<div id="mapsframe">
-        <img src="images/historicMaps.jpg" alt="Historical Maps" style="margin-left:0px; margin-top:0px; position:relative; border:0px;" />
-
+        
         <div class="row">
             <div class="col-md-2">
                 <p class="titleNameMap">Colonies of CT  &amp;<br/> RI <p />
