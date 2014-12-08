@@ -125,6 +125,7 @@ h5 {
     margin: 0 auto;
     width: 940px;
     height: 90%;
+	padding-bottom: 10px;
 }
 
 /********************   header   *************************/
@@ -224,6 +225,14 @@ h5 {
 
 }
 
+#mapsframe {
+   
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 15px;
+    padding-right: 0px;
+
+}
 /********************   footer   *************************/
 
 #footer {
