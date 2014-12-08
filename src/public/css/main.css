@@ -45,6 +45,9 @@ a.sort.asc:after {
   margin: 0 0 0 4px;
   padding: 0;
 }
+.tooltip {
+  z-index: 10!important;
+}
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
