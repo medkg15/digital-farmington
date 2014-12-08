@@ -37,7 +37,7 @@
     <div id="main-text-draw1">
 		<div id= "intro">
 		<img src="images/Introduction.png" alt="Introduction" />
-		<p style="color:black;"><button onclick="startIntro()">View an introduction map</button> </p>
+		<p style="color:black;"><button onclick="map.startIntro()">View an introduction map</button> </p>
 		</div>
         <img src="images/historicMaps.jpg" alt="Historical Maps" style="margin-left:0px; margin-top:0px; position:relative; border:0px;" />
 
