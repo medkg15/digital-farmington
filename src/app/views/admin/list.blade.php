@@ -18,7 +18,7 @@
     @foreach($pois as $poi)
 
         <tr>
-        <td class="name">{{ link_to_action('PointOfInterestController@showEdit', $poi->name, array('id' => $poi->id)) }}</td>
+        <td class="name">{{ link_to('/admin/poi/' . $poi->id, $poi->name) }}</td>
         <td class="categories">@foreach($poi->categories as $category){{$category}}<br/>@endforeach</td>
         <td class="display">{{ $poi->display ? 'Yes' : 'No'  }}</td>
         </tr>

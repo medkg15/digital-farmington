@@ -50,6 +50,8 @@
 
                             <a href="{{ action('LoginController@showLogin'); }}">Log In</a>
                         @else
+                            <a href="{{ action('MapController@displayAdmin'); }}">Administration</a>
+                            |
                             <a href="{{ action('LoginController@doLogout'); }}">Log Out</a>
                         @endif
                     </div>
