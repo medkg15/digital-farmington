@@ -103,7 +103,7 @@
                 var pois = {{ json_encode($pois) }};
 
                 map.initialize(eras, pois);
-                map.startIntro();
+         //       map.startIntro();
             });
         });
     </script>
