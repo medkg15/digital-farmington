@@ -44,14 +44,15 @@
         </div>
         <!--/ sideright -->
     </div>
-
+	
 <!--/ content1 -->		
  </div>	
 	
     <!-- clear --><div class="clearer"><span></span></div><!--/ clear -->
     <!-- main-text-draw1 -->
     <div id="main-text-draw1">
-		
+	    <!-- mapsframe -->
+		<div id="mapsframe">
         <img src="images/historicMaps.jpg" alt="Historical Maps" style="margin-left:0px; margin-top:0px; position:relative; border:0px;" />
 
         <div class="row">
@@ -97,6 +98,7 @@
             </div>
         </div>
     </div>
+	 </div>
 
     {{ View::make('maps.popup-1'); }}
     {{ View::make('maps.popup-2'); }}
