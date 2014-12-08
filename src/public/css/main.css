@@ -1,8 +1,8 @@
 @import "../../vendor/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css";
 /* custom site styles go here... */
 #map {
-   height: 500px;
-  }
+  height: 500px;
+}
 .full-size-historic-map {
   width: 100%;
 }
@@ -22,6 +22,21 @@
 }
 .slider.slider-horizontal {
   width: 100%;
+}
+a.sort {
+  cursor: pointer;
+}
+a.sort.desc:after {
+  content: "\e114";
+  font-family: 'Glyphicons Halflings';
+  padding: 0 5px;
+  text-decoration: none;
+}
+a.sort.asc:after {
+  content: "\e113";
+  font-family: 'Glyphicons Halflings';
+  padding: 0 5px;
+  text-decoration: none;
 }
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 html {
@@ -1764,7 +1779,7 @@ pre code {
     width: 83.33333333%;
   }
   .col-md-9 {
-    width: 95%;
+    width: 75%;
   }
   .col-md-8 {
     width: 66.66666667%;
@@ -1782,7 +1797,7 @@ pre code {
     width: 33.33333333%;
   }
   .col-md-3 {
-    width: 85%;
+    width: 25%;
   }
   .col-md-2 {
     width: 16.66666667%;

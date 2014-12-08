@@ -48,7 +48,7 @@ module.exports = function(grunt) {
           optimization: 0
         },
         files: {
-          "src/css/main.css": "src/public/css/less/main.less"
+          "src/public/css/main.css": "src/public/css/less/main.less"
         }
       },
 	  production: {
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
           optimization: 2
         },
         files: {
-          "src/css/main.css": "src/public/css/less/main.less"
+          "src/public/css/main.css": "src/public/css/less/main.less"
         }
 	  }
     },

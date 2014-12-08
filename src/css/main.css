@@ -23,6 +23,15 @@
 .slider.slider-horizontal {
   width: 100%;
 }
+a.sort {
+  cursor: pointer;
+}
+a.sort.desc:after {
+  content: "desc";
+}
+a.sort.asc:after {
+  content: "asc";
+}
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;

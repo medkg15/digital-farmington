@@ -87,6 +87,7 @@
     {{ View::make('maps.popup-3'); }}
     {{ View::make('maps.popup-4'); }}
     {{ View::make('maps.popup-5'); }}
+    {{ View::make('poi-detail'); }}
 @stop
 
 @section('scripts')
