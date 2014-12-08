@@ -59,7 +59,7 @@
         <div class="row">
             <div class="col-md-2">
                 <p class="titleNameMap">Colonies of CT  &amp;<br/> RI <p />
-                <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" />
+                <img src="images/titlecaret.png" alt="" width="15" height="6" style="margin-left:5px; margin-top:-10px; position:absolute;" />
 
                 <a class="thumbnail" data-toggle="modal" data-target="#popup-1">
                     <img src="images/historic/thumb-1.jpg" alt="Historical Maps" width="350" height="150" />
@@ -67,7 +67,7 @@
             </div>
             <div class="col-md-2">
                 <p class="titleNameMap">Birds-Eye View of Unionville <p />
-                <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" />
+                <img src="images/titlecaret.png" alt="" width="15" height="6" style="margin-left:5px; margin-top:-10px; position:absolute;" />
 
                 <a class="thumbnail" data-toggle="modal" data-target="#popup-2">
                     <img src="images/historic/thumb-2.jpg" alt="Historical Maps" width="350" height="150" />
@@ -75,7 +75,7 @@
             </div>
             <div class="col-md-2">
                 <p class="titleNameMap">New York City and Vicinity<p />
-                <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" />
+                <img src="images/titlecaret.png" alt="" width="15" height="6" style="margin-left:5px; margin-top:-10px; position:absolute;" />
 
                 <a class="thumbnail" data-toggle="modal" data-target="#popup-3">
                     <img src="images/historic/thumb-3.jpg" alt="Historical Maps" width="350" height="1" />
@@ -83,7 +83,7 @@
             </div>
             <div class="col-md-2">
                 <p class="titleNameMap">Town and City Atlas of the State of CT <p />
-                <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" />
+                <img src="images/titlecaret.png" alt="" width="15" height="6" style="margin-left:5px; margin-top:-10px; position:absolute;" />
 
                 <a class="thumbnail" data-toggle="modal" data-target="#popup-4">
                     <img src="images/historic/thumb-4.jpg" alt="Historical Maps" width="350" height="1" />
@@ -91,7 +91,7 @@
             </div>
             <div class="col-md-2">
                 <p class="titleNameMap">Novi Belgii Novaeque Angliae <p />
-                <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" />
+                <img src="images/titlecaret.png" alt="" width="15" height="6" style="margin-left:5px; margin-top:-10px; position:absolute;" />
 
                 <a class="thumbnail" data-toggle="modal" data-target="#popup-5">
                     <img src="images/historic/thumb-5.jpg" alt="Historical Maps" width="350" height="1" />
