@@ -56,7 +56,7 @@
 	    <!-- mapsframe -->
 		<div id="mapsframe">
         
-        <div class="row">
+        
             <div class="col-md-2">
                 <p class="titleNameMap">Colonies of CT  &amp;<br/> RI <p />
                 <img src="images/titlecaret.png" alt="" width="15" height="6" style="margin-left:5px; margin-top:-10px; position:absolute;" />
@@ -75,7 +75,7 @@
             </div>
             <div class="col-md-2">
                 <p class="titleNameMap">New York City and Vicinity<p />
-                <img src="images/titlecaret.png" alt="" width="15" height="6" style="margin-left:5px; margin-top:-10px; position:absolute;" />
+                <img src="images/titlecaret.png" alt="" width="15" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" />
 
                 <a class="thumbnail" data-toggle="modal" data-target="#popup-3">
                     <img src="images/historic/thumb-3.jpg" alt="Historical Maps" width="350" height="1" />
@@ -97,7 +97,7 @@
                     <img src="images/historic/thumb-5.jpg" alt="Historical Maps" width="350" height="1" />
                 </a>
             </div>
-        </div>
+       
     </div>
 	 </div>
 
