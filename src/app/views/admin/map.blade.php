@@ -60,7 +60,7 @@
                     }, function(poi){
                         if(confirm('Edit ' + poi.name + '?'))
                         {
-                            window.location = '/admin/poi/' + poi.id;
+                            window.location = '/admin/poi?id=' + poi.id;
                         }
                     }, colors);
             });
