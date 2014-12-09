@@ -3,8 +3,12 @@ define(['mapOverlay', 'async!http://maps.google.com/maps/api/js?sensor=false&key
     var allEvents = [];
     var introDone = false;
     var lastText;
+    var items = [];
+    var drawBoundariesFn;
 
     var startIntro = function (map, drawBoundaries, selectedYear, clearBoundaries) {
+
+        drawBoundariesFn = drawBoundaries;
 
         var welcomeText = new MapLabel({
             text: 'Welcome to Digital Farmington',
@@ -142,9 +146,9 @@ define(['mapOverlay', 'async!http://maps.google.com/maps/api/js?sensor=false&key
                     i = i + 1000;
                 }
 
-                setTimeout(function () {
-                    clearBoundaries();
-                }, 6000);
+                allEvents.push(setTimeout(function () {
+                        clearBoundaries();
+                    }, 6000));
             }, 10500));
 
         //Smooth out to the East Coast
@@ -189,6 +193,16 @@ define(['mapOverlay', 'async!http://maps.google.com/maps/api/js?sensor=false&key
 
                 drawBoundaries();
             }, 35000));
+
+        items = [
+            welcomeText,
+            exploreText,
+            boundaryText,
+            overlay,
+            colonialText,
+            todayText,
+            enjoyText
+        ];
     };
 
     return {
@@ -202,7 +216,11 @@ define(['mapOverlay', 'async!http://maps.google.com/maps/api/js?sensor=false&key
             }
             allEvents = [];
 
-            drawBoundaries();
+            for(var i = 0; i < items.length; i++){
+                items[i].setMap(null);
+            }
+            drawBoundariesFn();
+            introDone = true;
         },
         isDone: function () {
             return introDone;

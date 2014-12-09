@@ -9,6 +9,11 @@
         <div id="sidecenter">
             <div id="map">
             </div>
+
+			<div id= "intro">
+		        <p style="margin-top:5px;"><button class="btn btn-primary btn-block">View Introduction</button> </p>
+		    </div>
+
             <div id="selectyear">
                 <img src="images/selectaYear.png" alt="Select a Year" />
                  <div class="slide-container">
@@ -22,10 +27,6 @@
                     @endforeach
                 </div>
             </div>
-			<div id= "intro">
-		        <img src="images/Introduction.png" alt="Introduction" />
-		        <p style="color:black;"><button>View an introduction map</button> </p>
-		    </div>
         </div>
         <!--/ sidecenter -->
 		

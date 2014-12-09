@@ -24,7 +24,7 @@
   width: 100%;
 }
 .slide-container {
-  padding: 50px 50px 0 50px;
+  padding: 30px 50px 0 50px;
 }
 a.sort {
   cursor: pointer;
@@ -1810,7 +1810,7 @@ pre code {
     width: 25%;
   }
   .col-md-2 {
-    width: 18.66666667%;
+    width: 16.66666667%;
   }
   .col-md-1 {
     width: 8.33333333%;
