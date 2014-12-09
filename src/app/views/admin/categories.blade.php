@@ -3,7 +3,7 @@
 @section('content')
 
 {{ View::make('admin.header'); }}
-
+ <div class="admin">
 <h1>Rename Categories</h1>
 
         {{ Form::open(['action' => 'CategoryController@save']) }}
@@ -36,8 +36,13 @@
     {{ Form::submit('Save', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close(); }}
-
+</div>
 @stop
 
 @section('scripts')
+<script type="text/javascript">
+    require(['common'], function (common) {
+        require(['bootstrap']);
+    });
+</script>
 @stop

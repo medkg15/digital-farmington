@@ -12,7 +12,7 @@
 define(
     [
 //>>excludeStart('excludeMdown', pragmas.excludeMdown)
-        '../lib/text',
+        'text',
         'markdownConverter'
 //>>excludeEnd('excludeMdown')
     ],

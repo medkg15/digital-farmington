@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+ <div class="admin">
 {{ View::make('admin.header'); }}
 <h1>Point of Interest Database</h1><div id="pois">
 <input class="search form-control" placeholder="Search" />
@@ -30,13 +31,13 @@
     </table>
 
 </div>
-
+</div>
 @stop
 
 @section('scripts')
     <script type="text/javascript">
         require(['common'], function (common) {
-            require(['list'], function(List){
+            require(['list','bootstrap'], function(List){
                 var list = new List('pois', {
                     valueNames: [ 'name', 'categories', 'display' ]
                 });

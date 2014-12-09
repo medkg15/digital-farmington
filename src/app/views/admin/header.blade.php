@@ -26,7 +26,7 @@
                         <a href="{{action('ListController@showList')}}">
                         <div class="well" style="text-align: center">
                             <span class="glyphicon glyphicon-align-justify" style="font-size:50px;"></span><br/>
-                            Manage Points of Interest
+                            View Points of Interest
                         </div>
                         </a>
                     </div>

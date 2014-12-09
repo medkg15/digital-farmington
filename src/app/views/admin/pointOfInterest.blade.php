@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+ <div class="admin">
 {{ View::make('admin.header'); }}
     <h1>Manage Point of Interest</h1>
     @if(isset($poi))
@@ -78,13 +79,14 @@
         {{ Form::submit('Save', ['name' => 'submit']) }}
 
     {{ Form::close() }}
+    </div>
 @stop
 
 @section('scripts')
 <script type="text/javascript">
 
 require(['common'], function(){
-    require(['jquery'], function($){
+    require(['jquery','bootstrap', 'trumbowyg'], function($, bs, trumbowyg){
         $('#add').click(function(e){
             e.preventDefault();
             var newCategory = $('[name=new_category]').val();
@@ -94,6 +96,23 @@ require(['common'], function(){
                 $('#add-wrapper').before('<div class="checkbox"><label><input type="checkbox" name="category_new[]" checked value="'+ newCategory +'"/>'+newCategory+'</label></div>');
             }
         });
+
+        var btnsGrps = {
+                design:     ['bold', 'italic', 'underline', 'strikethrough'],
+                semantic:   ['strong', 'em', 'del'],
+                justify:    ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                lists:      ['unorderedList', 'orderedList']
+            };
+
+        $('textarea').trumbowyg({
+                                    btns: ['viewHTML',
+                                           '|', 'formatting',
+                                           '|', btnsGrps.design,
+                                           '|', 'link',
+                                           '|', 'insertImage',
+                                           '|', btnsGrps.lists,
+                                           '|', 'insertHorizontalRule']
+                                });
     });
 });
 </script>

@@ -8,6 +8,7 @@
     "requirejs-plugins": "~1.0.2",
     "seiyria-bootstrap-slider": "~4.2.0",
     "knockoutjs": "~3.2.0",
-    "list.js": "~1.1.1"
+    "list.js": "~1.1.1",
+    "trumbowyg": "~1.1.7"
   }
 }

@@ -38,6 +38,9 @@ class PointOfInterestController extends BaseController
         $poi->display = Input::get('display', (int)0);
         $poi->latitude = Input::get('latitude');
         $poi->longitude = Input::get('longitude');
+
+        $poi->save();
+
         $poi->eras()->sync(Input::get('era') ? Input::get('era') : []);
         $poi->categories()->sync(Input::get('category') ? Input::get('category') : []);
 

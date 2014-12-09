@@ -5,10 +5,11 @@ requirejs.config({
         , "underscore": "../vendor/underscore/underscore-min"
         , 'async': '../vendor/requirejs-plugins/src/async'
         , 'bootstrap-slider': '../vendor/seiyria-bootstrap-slider/dist/bootstrap-slider.min'
-        , 'list': '../vendor/list.js/dist/list.min'
+        , 'trumbowyg': '../vendor/trumbowyg/dist/trumbowyg'
 	}
 	, shim: {
-		"bootstrap": ['jquery']
+		"bootstrap": ['jquery'],
+        "trumbowyg": ['jquery']
 	}
     //, urlArgs: "v=11"
 });

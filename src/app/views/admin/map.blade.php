@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+ <div class="admin">
 {{ View::make('admin.header'); }}
 
     <p>Click the map to add a Point of Interest, or an existing Point of Interest to modify it.</p>
@@ -38,6 +39,7 @@
                         @endforeach
                 </div>
         <!--/ sideright -->
+    </div>
     </div>
 @stop
 
