@@ -24,7 +24,7 @@
             </div>
 			<div id= "intro">
 		        <img src="images/Introduction.png" alt="Introduction" />
-		        <p style="color:black;"><button id="intro">View an introduction map</button> </p>
+		        <p style="color:black;"><button>View an introduction map</button> </p>
 		    </div>
         </div>
         <!--/ sidecenter -->
@@ -122,8 +122,10 @@
 
                 map.initialize(eras, pois, null, null, colors);
 
-                $('#intro').click(function(){
+                $('#intro button').click(function(e){
+                    e.preventDefault();
                     map.startIntro();
+                    $('#intro').remove();
                 });
             });
         });
