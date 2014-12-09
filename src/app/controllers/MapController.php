@@ -50,7 +50,6 @@ class MapController extends BaseController
             'FFF8DC',
             'DC143C',
             '00FFFF',
-            '00008B',
             '008B8B',
             'B8860B',
             '006400',
