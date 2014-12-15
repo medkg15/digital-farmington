@@ -9,6 +9,11 @@
         <div id="sidecenter">
             <div id="map">
             </div>
+
+			<div id= "intro">
+		        <p style="margin-top:5px;"><button class="btn btn-primary btn-block">View Introduction</button> </p>
+		    </div>
+
             <div id="selectyear">
                 <img src="images/selectaYear.png" alt="Select a Year" />
                  <div class="slide-container">
@@ -22,10 +27,6 @@
                     @endforeach
                 </div>
             </div>
-			<div id= "intro">
-		        <img src="images/Introduction.png" alt="Introduction" />
-		        <p style="color:black;"><button id="intro">View an introduction map</button> </p>
-		    </div>
         </div>
         <!--/ sidecenter -->
 		
@@ -59,7 +60,7 @@
         
             <div class="col-md-2">
                 <p class="titleNameMap">Colonies of CT  &amp;<br/> RI <p />
-                <img src="images/titlecaret.png" alt="" width="15" height="6" style="margin-left:5px; margin-top:-10px; position:absolute;" />
+                <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" />
 
                 <a class="thumbnail" data-toggle="modal" data-target="#popup-1">
                     <img src="images/historic/thumb-1.jpg" alt="Historical Maps" width="350" height="150" />
@@ -67,7 +68,7 @@
             </div>
             <div class="col-md-2">
                 <p class="titleNameMap">Birds-Eye View of Unionville <p />
-                <img src="images/titlecaret.png" alt="" width="15" height="6" style="margin-left:5px; margin-top:-10px; position:absolute;" />
+                <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" />
 
                 <a class="thumbnail" data-toggle="modal" data-target="#popup-2">
                     <img src="images/historic/thumb-2.jpg" alt="Historical Maps" width="350" height="150" />
@@ -75,7 +76,7 @@
             </div>
             <div class="col-md-2">
                 <p class="titleNameMap">New York City and Vicinity<p />
-                <img src="images/titlecaret.png" alt="" width="15" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" />
+                <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" />
 
                 <a class="thumbnail" data-toggle="modal" data-target="#popup-3">
                     <img src="images/historic/thumb-3.jpg" alt="Historical Maps" width="350" height="1" />
@@ -83,7 +84,7 @@
             </div>
             <div class="col-md-2">
                 <p class="titleNameMap">Town and City Atlas of CT <p />
-                <img src="images/titlecaret.png" alt="" width="15" height="6" style="margin-left:5px; margin-top:-10px; position:absolute;" />
+                <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" />
 
                 <a class="thumbnail" data-toggle="modal" data-target="#popup-4">
                     <img src="images/historic/thumb-4.jpg" alt="Historical Maps" width="350" height="1" />
@@ -91,7 +92,7 @@
             </div>
             <div class="col-md-2">
                 <p class="titleNameMap">Novi Belgii Novaeque Angliae <p />
-                <img src="images/titlecaret.png" alt="" width="15" height="6" style="margin-left:5px; margin-top:-10px; position:absolute;" />
+                <img src="images/titlecaret.png" alt="" width="12" height="6" style="margin-left:3px; margin-top:-10px; position:absolute;" />
 
                 <a class="thumbnail" data-toggle="modal" data-target="#popup-5">
                     <img src="images/historic/thumb-5.jpg" alt="Historical Maps" width="350" height="1" />
@@ -122,10 +123,19 @@
 
                 map.initialize(eras, pois, null, null, colors);
 
-                $('#intro').click(function(){
+                $('#intro button').click(function(e){
+                    e.preventDefault();
                     map.startIntro();
+                    $('#intro').remove();
                 });
             });
         });
     </script>
+
+    <script charset="utf-8" type="text/javascript">var switchTo5x = false;</script>
+    <script charset="utf-8" type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({ publisher: "22ff76a7-01e5-4ac8-98d7-8b175f44c98f" });</script>
+    <script charset="utf-8" type="text/javascript" src="http://s.sharethis.com/loader.js"></script>
+    <script charset="utf-8" type="text/javascript">var options = { publisher: "22ff76a7-01e5-4ac8-98d7-8b175f44c98f", "position": "left", "chicklets": { "items": ["facebook", "twitter", "linkedin"] } }; var st_hover_widget = new sharethis.widgets.hoverbuttons(options);</script>
+
 @stop

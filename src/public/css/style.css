@@ -95,6 +95,7 @@ h5 {
     width: 230px;
     vertical-align: top;
     margin-right: 0px;
+	padding-left:15px !important;
 }
 
 /**********    content   *******************************/
@@ -260,36 +261,16 @@ h5 {
     width: 940px;
     margin: 0 auto;
     color: #959595;
-    font-size: 7pt;
+    font-size: 10pt;
     margin-top: 0px;
     margin-bottom: 20px;
 
 }
 
 #underfooterleft {
-    float: left;
-    width: 720px;
+    text-align:left;
     padding-left: 3px;
-}
-
-#underfooterright {
-    float: right;
-    width: 220px;
-    margin-top: 2px;
-    padding-right: 5px;
-    text-align: right;
-
-}
-
-#underfootercenter {
-    float: center;
-    text-align: center;
-    width: 900px;
-    padding-top: 5px;
-    padding-left: 0px;
-    color: #e78c13;
-    font-size: 8pt;
-
+    padding-top:5px;
 }
 
 #underfooter a {

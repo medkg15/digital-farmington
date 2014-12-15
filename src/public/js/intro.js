@@ -3,8 +3,12 @@ define(['mapOverlay', 'async!http://maps.google.com/maps/api/js?sensor=false&key
     var allEvents = [];
     var introDone = false;
     var lastText;
+    var items = [];
+    var drawBoundariesFn;
 
-    var startIntro = function (map, drawBoundaries, selectedYear) {
+    var startIntro = function (map, drawBoundaries, selectedYear, clearBoundaries) {
+
+        drawBoundariesFn = drawBoundaries;
 
         var welcomeText = new MapLabel({
             text: 'Welcome to Digital Farmington',
@@ -107,6 +111,8 @@ define(['mapOverlay', 'async!http://maps.google.com/maps/api/js?sensor=false&key
             }
         };
 
+        clearBoundaries();
+
         var overlay = new mapOverlay(bounds, srcImage);
 
         allEvents.push(setTimeout(function () {
@@ -115,7 +121,7 @@ define(['mapOverlay', 'async!http://maps.google.com/maps/api/js?sensor=false&key
             exploreText.setMap(map);
             lastText = exploreText;
             smoothZoom(16);
-        }, 6000));
+        }, 2000));
 
         //Event to show change borders over time
         allEvents.push(setTimeout(function () {
@@ -123,7 +129,7 @@ define(['mapOverlay', 'async!http://maps.google.com/maps/api/js?sensor=false&key
                 boundaryText.setMap(map);
                 smoothZoom(10);
                 lastText = boundaryText;
-            }, 12000));
+            }, 9000));
 
         allEvents.push(setTimeout(function () {
                 var i = 2500;
@@ -139,20 +145,24 @@ define(['mapOverlay', 'async!http://maps.google.com/maps/api/js?sensor=false&key
                         }, i));
                     i = i + 1000;
                 }
-            }, 13500));
+
+                allEvents.push(setTimeout(function () {
+                        clearBoundaries();
+                    }, 6000));
+            }, 10500));
 
         //Smooth out to the East Coast
         allEvents.push(setTimeout(function () {
                 boundaryText.setMap(null);
                 smoothZoom(5);
-            }, 19000));
+            }, 16000));
 
         //Show the colonial America map and "From Colonial America"
         allEvents.push(setTimeout(function () {
                 overlay.setMap(map);
                 colonialText.setMap(map);
                 lastText = colonialText;
-            }, 21000));
+            }, 18000));
 
         //Go to the UCONN Medical Center.
         allEvents.push(setTimeout(function () {
@@ -160,13 +170,13 @@ define(['mapOverlay', 'async!http://maps.google.com/maps/api/js?sensor=false&key
                 colonialText.setMap(null);
                 map.panTo(new google.maps.LatLng(41.731445, -72.791100));
                 smoothZoom(16);
-            }, 25000));
+            }, 22000));
 
         //Show the Farmington Health Center and text
         allEvents.push(setTimeout(function () {
                 todayText.setMap(map);
                 lastText = todayText;
-            }, 25500));
+            }, 23500));
 
         allEvents.push(setTimeout(function () {
                 map.set('minZoom', 9);
@@ -174,13 +184,25 @@ define(['mapOverlay', 'async!http://maps.google.com/maps/api/js?sensor=false&key
                 enjoyText.setMap(map);
                 smoothZoom(10);
                 lastText = enjoyText;
-            }, 32000));
+            }, 29000));
 
         //Intro is done. Remove everything.
         allEvents.push(setTimeout(function () {
                 enjoyText.setMap(null);
                 introDone = true;
-            }, 38000));
+
+                drawBoundaries();
+            }, 35000));
+
+        items = [
+            welcomeText,
+            exploreText,
+            boundaryText,
+            overlay,
+            colonialText,
+            todayText,
+            enjoyText
+        ];
     };
 
     return {
@@ -193,6 +215,12 @@ define(['mapOverlay', 'async!http://maps.google.com/maps/api/js?sensor=false&key
                 clearTimeout(allEvents[i]);
             }
             allEvents = [];
+
+            for(var i = 0; i < items.length; i++){
+                items[i].setMap(null);
+            }
+            drawBoundariesFn();
+            introDone = true;
         },
         isDone: function () {
             return introDone;

@@ -6,7 +6,7 @@ class PointOfInterestController extends BaseController
     {
         $id = Input::get('id');
 
-        $eras = Era::all();
+        $eras = Era::orderBy('label', 'ASC')->get();
         $categories = Category::all();
 
         $poi = null;
@@ -17,7 +17,6 @@ class PointOfInterestController extends BaseController
         else
         {
         }
-
 
         return View::make('admin.pointOfInterest')->with('poi', $poi)->with('eras', $eras)->with('categories', $categories);
     }
@@ -39,6 +38,26 @@ class PointOfInterestController extends BaseController
         $poi->display = Input::get('display', (int)0);
         $poi->latitude = Input::get('latitude');
         $poi->longitude = Input::get('longitude');
+
+        $poi->save();
+
+        $poi->eras()->sync(Input::get('era') ? Input::get('era') : []);
+        $poi->categories()->sync(Input::get('category') ? Input::get('category') : []);
+
+        $newCategories = Input::get('category_new');
+
+        if ($newCategories)
+        {
+            $count = DB::table('category')->count();
+
+            foreach($newCategories as $category)
+            {
+                $obj = new Category();
+                $obj->label = $category;
+                $obj->position = $count++;
+                $poi->categories()->save($obj);
+            }
+        }
 
         $poi->save();
 

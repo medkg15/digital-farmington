@@ -5,6 +5,7 @@ define(
         var map;
         var drawBoundaries;
         var changeSelectedYear;
+        var clearBoundaries;
 
         return {
             initialize: function(eras, pois, onMapClick, onMarkerClick, colorLookup){
@@ -45,7 +46,7 @@ define(
                 var boundaries = null;
 
                 var titleInfoWindow = new google.maps.InfoWindow({});
-                var summaryInfoWindow = new google.maps.InfoWindow({});
+                var summaryInfoWindow = new google.maps.InfoWindow({ maxWidth:400 });
                 var currentSummaryMarker = null;
                 var selectedCategories = $('input[name=categories]:checked').map(function () {
                     return $(this).val();
@@ -162,6 +163,13 @@ define(
 
                     return availableBoundaries[index].boundaries;
 
+                };
+
+                clearBoundaries = function(){
+                    // first clear the boundaries if we have any.
+                    if (boundaries) {
+                        boundaries.setMap(null);
+                    }
                 };
 
                 drawBoundaries = function () {
@@ -300,7 +308,7 @@ define(
             },
             startIntro: function(){
 
-                intro.startIntro(map, drawBoundaries, changeSelectedYear);
+                intro.startIntro(map, drawBoundaries, changeSelectedYear, clearBoundaries);
 
             }
         };

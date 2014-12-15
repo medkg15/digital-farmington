@@ -34,6 +34,6 @@ class CategoryController extends BaseController {
             $category->save();
         }
 
-        return Redirect::action('CategoryController@show');
+        return Redirect::action('MapController@displayAdmin');
     }
 } 
